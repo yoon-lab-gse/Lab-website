@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects — CRADLE Lab</title>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <style>
+    /* ---- FILTER PILLS ---- */
+    .filter-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:40px; }
+    .fpill {
+      font-family:var(--font-display); font-size:12.5px; font-weight:400;
+      padding:6px 18px; border-radius:20px; cursor:pointer;
+      background:var(--panel); color:var(--text-muted);
+      border:1px solid var(--border); transition:all .15s;
+    }
+    .fpill:hover, .fpill.active {
+      background:var(--cyan-dim); color:var(--cyan); border-color:var(--border-mid);
+    }
+
+    /* ---- PROJECT CARDS (accordion) ---- */
+    .proj-list { display:flex; flex-direction:column; gap:10px; }
+    .proj-card {
+      background:var(--panel); border:1px solid var(--border);
+      border-radius:var(--radius-lg); overflow:hidden;
+      transition:border-color .2s, box-shadow .2s;
+    }
+    .proj-card:hover { border-color:var(--border-mid); }
+    .proj-header {
+      display:flex; align-items:flex-start; gap:16px;
+      padding:22px 24px; cursor:pointer;
+    }
+    .proj-header:hover { background:rgba(62,184,232,0.03); }
+    .proj-indicator {
+      width:10px; height:10px; border-radius:50%; flex-shrink:0; margin-top:5px;
+    }
+    .proj-indicator.current { background:var(--cyan); box-shadow:0 0 8px var(--cyan-glow); }
+    .proj-indicator.past    { background:var(--text-muted); }
+    .proj-meta { flex:1; }
+    .proj-title { font-family:var(--font-display); font-size:15.5px; font-weight:500; color:var(--text-bright); line-height:1.4; }
+    .proj-sub   { font-size:12.5px; color:var(--text-muted); margin-top:4px; }
+    .proj-tags  { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+    .proj-toggle {
+      background:var(--panel-light); border:1px solid var(--border);
+      border-radius:50%; width:28px; height:28px; flex-shrink:0;
+      color:var(--cyan); font-size:18px; font-weight:300; font-family:var(--font-display);
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      transition:background .15s, border-color .15s;
+    }
+    .proj-toggle:hover { background:var(--cyan-dim); border-color:var(--border-mid); }
+
+    /* body */
+    .proj-body {
+      max-height:0; overflow:hidden;
+      transition:max-height .35s ease, padding .25s;
+      padding:0 24px;
+    }
+    .proj-body.open { max-height:2400px; padding:0 24px 26px; }
+    .proj-body p { font-size:14.5px; color:var(--text); line-height:1.8; margin-bottom:14px; }
+    .proj-body p:last-child { margin-bottom:0; }
+    .proj-body strong { color:var(--text-bright); font-weight:500; }
+    .nsf-link {
+      display:inline-flex; align-items:center; gap:5px;
+      font-family:var(--font-display); font-size:12.5px; color:var(--cyan); margin-top:10px;
+    }
+
+    /* Sub-project grid */
+    .sub-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:22px; }
+    .sub-card {
+      background:var(--panel-light); border:1px solid var(--border);
+      border-radius:var(--radius); padding:16px 18px;
+    }
+    .sub-card h4 { font-family:var(--font-display); font-size:13.5px; font-weight:500; color:var(--text-bright); margin-bottom:6px; }
+    .sub-card .mgr { font-size:12px; color:var(--cyan); margin-bottom:6px; font-family:var(--font-display); }
+    .sub-card p { font-size:12.5px; color:var(--text-muted); line-height:1.65; }
+    .sub-card a { font-size:12px; color:var(--cyan); margin-top:8px; display:inline-block; }
+
+    /* Curricular callout */
+    .resource-callout {
+      margin-top:22px; background:rgba(62,184,232,0.06);
+      border:1px solid var(--border-mid); border-radius:var(--radius);
+      padding:16px 20px;
+    }
+    .resource-callout p { font-size:13px; color:var(--text-muted); margin-bottom:6px; }
+    .resource-callout a { font-family:var(--font-display); font-size:13px; color:var(--cyan); font-weight:500; }
+
+    /* Other projects box */
+    .other-box {
+      background:var(--panel); border:1px solid var(--border);
+      border-radius:var(--radius-lg); padding:26px 28px;
+    }
+    .other-box p { font-size:14.5px; color:var(--text); line-height:1.9; }
+    .other-box strong { color:var(--text-bright); font-weight:500; }
+
+    @media(max-width:600px){ .sub-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><span class="logo-node"></span>CRADLE Lab</a>
+    <div class="nav-links">
+      <a href="../index.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="team.html">Our Team</a>
+      <a href="publications.html">Publications</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <p class="section-label">Research</p>
+    <h1>Projects</h1>
+    <p>A long history of applying complex systems approaches for science education with teachers and students — from professional development to agent-based simulations and beyond.</p>
+  </div>
+</div>
+
+<main>
+  <section class="section">
+    <div class="container">
+
+      <div class="filter-row">
+        <button class="fpill active" data-pfilter="all">All Projects</button>
+        <button class="fpill" data-pfilter="current">Current</button>
+        <button class="fpill" data-pfilter="past">Past</button>
+        <button class="fpill" data-pfilter="nsf">NSF-Funded</button>
+      </div>
+
+      <!-- =========== CURRENT =========== -->
+      <div class="sec-divider"><span>Current Projects</span><div class="line"></div></div>
+      <p style="color:var(--text-muted);font-size:14.5px;margin-bottom:28px;max-width:700px;">CRADLE Lab is currently engaged in two large-scale NSF-funded research projects. Click any project to expand full details.</p>
+
+      <div class="proj-list">
+
+        <!-- K-12 Bioinformatics -->
+        <div class="proj-card" data-cat="current nsf">
+          <div class="proj-header" onclick="this.closest('.proj-card').querySelector('.proj-toggle').click()">
+            <div class="proj-indicator current"></div>
+            <div class="proj-meta">
+              <div class="proj-title">Professional Development Supports for Teaching Bioinformatics through Mobile Learning (K-12 Bioinformatics)</div>
+              <div class="proj-sub">NSF Discovery Research K-12 · 2018–2024 · Urban air quality &amp; bioinformatics · Mobile learning</div>
+              <div class="proj-tags">
+                <span class="tag">Current</span>
+                <span class="tag nsf">NSF DRK-12</span>
+              </div>
+            </div>
+            <button class="proj-toggle" aria-expanded="false"><span class="ti">+</span></button>
+          </div>
+          <div class="proj-body">
+            <p>The major goal of this project is to co-construct and field-test multidisciplinary high school lessons organized around bioinformatics concepts through existing educational research. The lessons engage students in real-world data collection to investigate air quality issues and their relationship with asthma by using a mobile phone and sensors to collect local data in students' neighborhoods (e.g., particulate matter 2.5 and carbon monoxide).</p>
+            <p>These lessons are anchored in culturally meaningful learning, real-world inquiry, data literacy, contextualization with mobile technology, and cognitively-rich pedagogies through problem-based learning (PBL).</p>
+            <p><strong>Over the course of this project, we have:</strong></p>
+            <p>(a) designed an entirely novel bioinformatics curriculum for high school students; (b) partnered with teachers to enact that curriculum with hundreds of high school students from a diverse set of partner schools; (c) run a variety of in-person and online workshops with 15 high school science teachers in the greater Philadelphia area; (d) constructed and delivered a fully online professional development (PD) experience using edX; and (e) designed new methods for teacher training that promote teacher pedagogical content knowledge for data literacy and resource activation.</p>
+            <a class="nsf-link" href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1812738&HistoricalAwards=false" target="_blank" rel="noopener">↗ NSF Award #1812738</a>
+
+            <div style="margin-top:22px;">
+              <div style="font-family:var(--font-display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px;">Related Research Lines</div>
+              <div class="sub-grid">
+                <div class="sub-card">
+                  <h4>Epistemic Emotions &amp; Practices</h4>
+                  <div class="mgr">PM: Jooeun Shim · <a href="mailto:js4719@tc.columbia.edu">js4719@tc.columbia.edu</a></div>
+                  <p>Investigates how students' epistemic emotions — curiosity, confusion, surprise — shape engagement in data inquiry and analysis within K–12 bioinformatics contexts. The project examines how emotional responses arise during data investigation and how they influence students' epistemic practices.</p>
+                  <a href="https://doi.org/10.22318/icls2025.355776" target="_blank" rel="noopener">↗ ICLS 2025 Paper</a>
+                </div>
+                <div class="sub-card">
+                  <h4>Student Artifact Analysis</h4>
+                  <div class="mgr">PM: Jooeun Shim · <a href="mailto:js4719@tc.columbia.edu">js4719@tc.columbia.edu</a></div>
+                  <p>Investigates how students' learning in K–12 bioinformatics extends beyond understanding to informed action. Grounded in Hodson's framework of science education for action, the study examines how students use data-driven insights to identify issues, make decisions, and take action on real-world problems.</p>
+                </div>
+                <div class="sub-card">
+                  <h4>Bichronous Learning</h4>
+                  <div class="mgr">PM: Sue Kwon · <a href="mailto:suekwon@upenn.edu">suekwon@upenn.edu</a></div>
+                  <p>Examines a bichronous learning model that purposefully integrates synchronous and asynchronous modalities to deliver a flexible, interactive online professional development program for high school science teachers. Participants engage in real-time discussions while completing self-paced tasks on their own schedule.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DeTECT -->
+        <div class="proj-card" data-cat="current nsf">
+          <div class="proj-header" onclick="this.closest('.proj-card').querySelector('.proj-toggle').click()">
+            <div class="proj-indicator current"></div>
+            <div class="proj-meta">
+              <div class="proj-title">DeTECT: Developing Teachers' Epistemic Cognition and Teaching Practices for Supporting Students' Epistemic Practices with Scientific Systems</div>
+              <div class="proj-sub">NSF Discovery Research K-12 · 2020–2026 · Epistemic practices · Complex systems · Global partnerships</div>
+              <div class="proj-tags">
+                <span class="tag">Current</span>
+                <span class="tag nsf">NSF DRK-12</span>
+              </div>
+            </div>
+            <button class="proj-toggle" aria-expanded="false"><span class="ti">+</span></button>
+          </div>
+          <div class="proj-body">
+            <p>The ultimate goal of DeTECT is to support the development of students' epistemic practices and cognition while promoting their interest and skills in investigating and evaluating scientific phenomena. To accomplish this goal, we are constructing, delivering, and pilot testing a high-quality teacher professional development program using complex systems curricula and agent-based simulations.</p>
+            <p><strong>Over the course of this project, we have:</strong></p>
+            <p>(a) run a variety of in-person and online workshops with 12 expert partner teachers from the USA, India, and Kenya; (b) designed novel PD resources to support the integration of opportunities for robust and authentic epistemic practices inside real-world classrooms; (c) developed a new complex systems curriculum and agent-based simulation on StarLogo Nova to engage students in a realistic pandemic investigation; (d) adapted an existing complex systems curriculum (BioGraph) to promote additional opportunities for students to engage in meaningful epistemic practices and to more directly incorporate socioscientific issues (SSIs); and (e) supported the implementation of these new curricular resources with hundreds of students across the globe.</p>
+            <a class="nsf-link" href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2009803&HistoricalAwards=false" target="_blank" rel="noopener">↗ NSF Award #2009803</a>
+
+            <div style="margin-top:22px;">
+              <div style="font-family:var(--font-display);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px;">DeTECT Research Lines</div>
+              <div class="sub-grid">
+                <div class="sub-card">
+                  <h4>Instructional Epistemic Frames</h4>
+                  <p>Examines teacher moves intended to support students' authentic engagement with and understanding of scientific practices in professional development settings of high school biology teachers.</p>
+                  <a href="https://doi.org/10.22318/icls2024.370767" target="_blank" rel="noopener">↗ ICLS 2024 Paper</a>
+                </div>
+                <div class="sub-card">
+                  <h4>Epistemic Disagreements</h4>
+                  <div class="mgr">PM: Noora Noushad · <a href="mailto:noora@gse.upenn.edu">noora@gse.upenn.edu</a></div>
+                  <p>Explores mechanisms that help teachers navigate an increasingly complex epistemic space by bringing elements of epistemic conflict into classrooms productively. Three lines of inquiry: redesigning science learning, developing teacher mediation moves, and epistemic performance in algorithmically mediated environments.</p>
+                </div>
+                <div class="sub-card">
+                  <h4>Epistemic Vigilance</h4>
+                  <div class="mgr">PM: Claire LeBovidge · <a href="mailto:cleb@upenn.edu">cleb@upenn.edu</a></div>
+                  <p>Designed to help students navigate scientific misinformation encountered in everyday life. Students examine four sources about energy drinks and mental health, developing shared criteria of credible source characteristics. Introduces key concepts such as review studies, confirmation bias, and cherry-picking.</p>
+                </div>
+                <div class="sub-card">
+                  <h4>Collaborative Design</h4>
+                  <div class="mgr">PM: Claire LeBovidge · <a href="mailto:cleb@upenn.edu">cleb@upenn.edu</a></div>
+                  <p>Collaborative design (co-design) is marked by shared agency among teachers and researchers in shaping both the design process and its products. Teachers participate in iterative cycles of design, classroom enactment, and revision — some partnerships spanning over a decade.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="resource-callout">
+              <p style="font-family:var(--font-display);font-size:13px;font-weight:500;color:var(--text-bright);margin-bottom:4px;">📋 Curricular Resources</p>
+              <p>Evidence-based resources developed by teachers, for teachers — including The Epidemic Unit (7 lessons, ~8 hrs) and The Waterville Unit, aligned to NGSS.</p>
+              <a href="curricular-resources.html">View Curricular Resources →</a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /current proj-list -->
+
+      <!-- =========== PAST =========== -->
+      <div class="sec-divider"><span>Past Projects</span><div class="line"></div></div>
+      <div class="proj-list">
+
+        <div class="proj-card" data-cat="past nsf">
+          <div class="proj-header" onclick="this.closest('.proj-card').querySelector('.proj-toggle').click()">
+            <div class="proj-indicator past"></div>
+            <div class="proj-meta">
+              <div class="proj-title">BioGraph 2.0 – Professional Development for High School Biology Teachers for Teaching and Learning About Complex Systems</div>
+              <div class="proj-sub">NSF DRK-12, 2017–2021 · Online PD on edX · Global reach</div>
+              <div class="proj-tags"><span class="tag past">Past</span><span class="tag nsf">NSF DRK-12</span></div>
+            </div>
+            <button class="proj-toggle" aria-expanded="false"><span class="ti">+</span></button>
+          </div>
+          <div class="proj-body">
+            <p>Our team designed a large-scale fully online PD program to improve access to BioGraph resources and high-quality pedagogical practices at relatively low cost. This program was hosted on edX and was accessed by hundreds of teachers from across the globe. As a result of this program, the BioGraph curriculum was implemented with thousands of students in a wide range of diverse educational contexts.</p>
+            <p>As with the original BioGraph program, the simulations and curricular resources can be found on <a href="https://moodle.biographproject.org/course/view.php?id=2" target="_blank" rel="noopener">the BioGraph Moodle site</a>.</p>
+            <a class="nsf-link" href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1721003&HistoricalAwards=false" target="_blank" rel="noopener">↗ NSF Award #1721003</a>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="past nsf">
+          <div class="proj-header" onclick="this.closest('.proj-card').querySelector('.proj-toggle').click()">
+            <div class="proj-indicator past"></div>
+            <div class="proj-meta">
+              <div class="proj-title">BioGraph – Graphical Programming for Constructing Complex Systems Understanding in Biology</div>
+              <div class="proj-sub">NSF DRK-12, 2010–2015 · Agent-based simulations · High school biology</div>
+              <div class="proj-tags"><span class="tag past">Past</span><span class="tag nsf">NSF DRK-12</span></div>
+            </div>
+            <button class="proj-toggle" aria-expanded="false"><span class="ti">+</span></button>
+          </div>
+          <div class="proj-body">
+            <p>Our team developed agent-based simulations and a five-lesson high school biology curriculum to support the teaching of complex systems ideas and concepts in high school science classrooms. The simulations and curriculum were developed in strong partnership with high school science teachers, many of whom still collaborate with CRADLE Lab to this day.</p>
+            <p>The simulations and curricular resources can be found on <a href="https://moodle.biographproject.org/course/view.php?id=2" target="_blank" rel="noopener">the BioGraph Moodle site</a>. These simulations and curricular resources served as a foundational building block for the DeTECT project.</p>
+            <a class="nsf-link" href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=1019228" target="_blank" rel="noopener">↗ NSF Award #1019228</a>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="past">
+          <div class="proj-header" onclick="this.closest('.proj-card').querySelector('.proj-toggle').click()">
+            <div class="proj-indicator past"></div>
+            <div class="proj-meta">
+              <div class="proj-title">App Inventor for Socio-scientific Issues to Build Engagement in STEM</div>
+              <div class="proj-sub">University Research Fund &amp; Milken Foundation, 2016–2017 · Middle school app design</div>
+              <div class="proj-tags"><span class="tag past">Past</span></div>
+            </div>
+            <button class="proj-toggle" aria-expanded="false"><span class="ti">+</span></button>
+          </div>
+          <div class="proj-body">
+            <p>This project supported middle school students as they developed their own app to address or raise awareness about locally-relevant socioscientific issues of their choosing. Over the course of this program, students learned to use the App Inventor programming language before utilizing an iterative process to design, adapt, and revise student-generated apps to challenge the issues that students found most personally relevant.</p>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="past nsf">
+          <div class="proj-header" onclick="this.closest('.proj-card').querySelector('.proj-toggle').click()">
+            <div class="proj-indicator past"></div>
+            <div class="proj-meta">
+              <div class="proj-title">ARIEL — Augmented Reality for Interpretive and Experiential Learning</div>
+              <div class="proj-sub">NSF AISL, 2008–2014 · Franklin Institute Science Museum · Middle school</div>
+              <div class="proj-tags"><span class="tag past">Past</span><span class="tag nsf">NSF AISL</span></div>
+            </div>
+            <button class="proj-toggle" aria-expanded="false"><span class="ti">+</span></button>
+          </div>
+          <div class="proj-body">
+            <p>This project integrated augmented reality (AR) learning experiences into an exhibit at the Franklin Institute Science Museum. These experiences were targeted primarily towards middle school-aged students and covered topics such as aerodynamics and physics.</p>
+            <a class="nsf-link" href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=0741659" target="_blank" rel="noopener">↗ NSF Award #0741659</a>
+          </div>
+        </div>
+
+        <div class="proj-card" data-cat="past nsf">
+          <div class="proj-header" onclick="this.closest('.proj-card').querySelector('.proj-toggle').click()">
+            <div class="proj-indicator past"></div>
+            <div class="proj-meta">
+              <div class="proj-title">Nanotechnology and Bioengineering in Philadelphia Public Schools</div>
+              <div class="proj-sub">NSF ITEST, 2008–2012 · 18 Philadelphia-area schools · Thousands of students</div>
+              <div class="proj-tags"><span class="tag past">Past</span><span class="tag nsf">NSF ITEST</span></div>
+            </div>
+            <button class="proj-toggle" aria-expanded="false"><span class="ti">+</span></button>
+          </div>
+          <div class="proj-body">
+            <p>This project involved partnering with teachers and guidance counselors from 18 schools across the greater Philadelphia area to increase student knowledge of nanotechnology and bioengineering, enhance student skills at using information and educational technologies, and increase student awareness of post-secondary educational opportunities and careers in science, technology, and engineering.</p>
+            <p>Through a series of workshops, online communications and support, field trips, and a community expo, thousands of high school students were impacted by this project.</p>
+            <a class="nsf-link" href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=0737437" target="_blank" rel="noopener">↗ NSF Award #0737437</a>
+          </div>
+        </div>
+
+      </div><!-- /past proj-list -->
+
+      <!-- =========== OTHER =========== -->
+      <div class="sec-divider"><span>Other Projects</span><div class="line"></div></div>
+      <div class="other-box">
+        <p>• <strong>A Penn–West Philadelphia / Philadelphia Public School Partnership</strong> to Develop Innovative and Sustainable Ways for Technology to Positively Impact Learning (Lenovo Foundation, 2011–2012)</p>
+        <p style="margin-top:12px;">• <strong>Headstart to High School Science in West Philadelphia Schools</strong>, a summer project focused on socioscientific issues for middle school students (Lindback Foundation, 2006–2008)</p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><span class="logo-node"></span>CRADLE Lab</div>
+      <p class="footer-desc">Complex Systems Research and Design of Learning Environments · University of Pennsylvania, Graduate School of Education</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <p><a href="../index.html">About</a><br><a href="projects.html">Projects</a><br><a href="team.html">Our Team</a><br><a href="publications.html">Publications</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>3700 Walnut Street<br>Philadelphia, PA 19104<br><a href="mailto:yoonsa@upenn.edu">yoonsa@upenn.edu</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">Copyright © 2026 CRADLE Lab · Penn Graduate School of Education</div>
+</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

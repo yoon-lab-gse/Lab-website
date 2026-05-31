@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Team — CRADLE Lab</title>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <style>
+    /* ---- TABS ---- */
+    .team-tabs {
+      display: flex; gap: 0;
+      border-bottom: 1px solid var(--border); margin-bottom: 44px;
+    }
+    .team-tab {
+      font-family: var(--font-display); font-size: 13.5px; font-weight: 400;
+      color: var(--text-muted); background: none; border: none; cursor: pointer;
+      padding: 10px 20px; border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: color .14s, border-color .14s; letter-spacing: .02em;
+    }
+    .team-tab:hover   { color: var(--text-bright); }
+    .team-tab.active  { color: var(--cyan); border-bottom-color: var(--cyan); }
+
+    /* ---- CURRENT TEAM GRID ---- */
+    .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+    .team-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .team-card:hover { border-color: var(--border-mid); box-shadow: var(--glow); }
+    .team-photo { width:100%; aspect-ratio:1/1; overflow:hidden; background:var(--panel-light); }
+    .team-photo img { width:100%; height:100%; object-fit:cover; }
+    .team-photo-ph {
+      width:100%; height:100%;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      gap:8px; color:var(--text-dim); font-size:11px; font-family:var(--font-display);
+    }
+    .team-photo-ph svg { opacity:.22; }
+    .team-info { padding: 20px 22px 22px; }
+    .team-name  { font-family:var(--font-display); font-size:16px; font-weight:600; color:var(--text-bright); }
+    .team-role  { font-family:var(--font-display); font-size:12px; font-weight:500; color:var(--cyan); margin-top:3px; letter-spacing:.02em; }
+    .team-affil { font-size:12px; color:var(--text-muted); margin-top:2px; line-height:1.5; }
+    .team-bio   { font-size:13px; color:var(--text); margin-top:12px; line-height:1.7; }
+    .team-link  { display:inline-flex; align-items:center; gap:5px; margin-top:12px; font-size:12.5px; color:var(--cyan); font-family:var(--font-display); }
+
+    /* ---- COLLABORATORS GRID ---- */
+    .collab-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+    .collab-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 20px 22px;
+      display: flex; gap: 16px; align-items: flex-start;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .collab-card:hover { border-color: var(--border-mid); box-shadow: 0 0 16px rgba(62,184,232,.1); }
+    .collab-avatar {
+      width: 46px; height: 46px; border-radius: 50%; flex-shrink: 0;
+      background: var(--panel-light); border: 1px dashed var(--border-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--text-muted);
+      overflow: hidden;
+    }
+    .collab-avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+    /* TO ADD PHOTO: <img class="collab-avatar" src="../assets/images/name.jpg" alt="Name"> */
+    .collab-info { flex:1; }
+    .collab-name { font-family:var(--font-display); font-size:14.5px; font-weight:600; color:var(--text-bright); }
+    .collab-title{ font-family:var(--font-display); font-size:11.5px; font-weight:500; color:var(--cyan); margin-top:2px; }
+    .collab-role { font-size:12.5px; color:var(--text-muted); margin-top:5px; line-height:1.6; }
+    .collab-link { display:inline-flex; align-items:center; gap:4px; margin-top:8px; font-size:12px; color:var(--cyan); font-family:var(--font-display); }
+
+    /* ---- FORMER MEMBERS ---- */
+    .former-grid { display:flex; flex-direction:column; gap:10px; }
+    .former-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px 20px;
+      display: flex; align-items: center; gap: 14px;
+      transition: border-color .15s;
+    }
+    .former-card:hover { border-color: var(--border-mid); }
+    .former-av {
+      width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+      background: var(--panel-light); border: 1px dashed var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 12px; font-weight: 600; color: var(--text-dim);
+    }
+    .former-name { font-family:var(--font-display); font-size:14px; font-weight:500; color:var(--text-bright); }
+    .former-role { font-size:12.5px; color:var(--text-muted); margin-top:1px; }
+    .former-link { font-size:12px; color:var(--cyan); margin-left:auto; font-family:var(--font-display); flex-shrink:0; }
+
+    /* section visibility */
+    [data-section] { display:none; }
+    [data-section="current"] { display:grid; }
+
+    @media(max-width:900px){ .team-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:600px){
+      .team-grid { grid-template-columns:1fr; }
+      .collab-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><span class="logo-node"></span>CRADLE Lab</a>
+    <div class="nav-links">
+      <a href="../index.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="team.html" class="active">Our Team</a>
+      <a href="publications.html">Publications</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <p class="section-label">People</p>
+    <h1>Our Team</h1>
+    <p>A motivated group of researchers, K–12 educators, and scientists. We have partnered with teachers from more than 20 countries and collaborated with researchers from MIT, Rutgers, the Philadelphia Zoo, and Children's Hospital of Philadelphia.</p>
+  </div>
+</div>
+
+<main>
+  <section class="section">
+    <div class="container">
+
+      <div class="team-tabs" role="tablist">
+        <button class="team-tab active" data-tab="current" data-group="team" role="tab" aria-selected="true">Current Members</button>
+        <button class="team-tab" data-tab="collab" data-group="team" role="tab" aria-selected="false">Collaborators</button>
+        <button class="team-tab" data-tab="former" data-group="team" role="tab" aria-selected="false">Former Members</button>
+      </div>
+
+      <!-- =================== CURRENT MEMBERS =================== -->
+      <div data-section="current" data-group="team" class="team-grid">
+
+        <!-- Susan Yoon -->
+        <div class="team-card">
+          <div class="team-photo">
+            <div class="team-photo-ph">
+              <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              <span>Photo coming soon</span>
+            </div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Susan Yoon, Ph.D</div>
+            <div class="team-role">Principal Investigator · Lab Founder</div>
+            <div class="team-affil">GSE Presidential Professor<br>Associate Dean for Research and Faculty Affairs</div>
+            <div class="team-bio">A learning scientist who specializes in using complex systems approaches for teaching and learning with both students and teachers. Her research focuses on science education and learning environments that reveal patterns of information that may not be seen or understood through traditional means.</div>
+            <a class="team-link" href="https://www.gse.upenn.edu/faculty/susan-yoon" target="_blank" rel="noopener">Faculty Profile →</a>
+          </div>
+        </div>
+
+        <!-- Sue Kwon -->
+        <div class="team-card">
+          <div class="team-photo">
+            <div class="team-photo-ph">
+              <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              <span>Photo coming soon</span>
+            </div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Sue Kwon</div>
+            <div class="team-role">Ph.D Student</div>
+            <div class="team-affil">Learning Sciences and Technologies</div>
+            <div class="team-bio">A learning scientist, instructional designer, and former teacher who specializes in designing K–12 STEM learning environments. Her research focuses on how students learn as a group in technology-mediated settings and what design principles support their collaborative learning.</div>
+          </div>
+        </div>
+
+        <!-- Claire LeBovidge -->
+        <div class="team-card">
+          <div class="team-photo">
+            <div class="team-photo-ph">
+              <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              <span>Photo coming soon</span>
+            </div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Claire LeBovidge</div>
+            <div class="team-role">Ph.D Student</div>
+            <div class="team-affil">Learning Sciences and Technologies</div>
+            <div class="team-bio">A learning scientist and former teacher interested in supporting K–12 students as they navigate the complex information systems of everyday life. Her research focuses on how students evaluate scientific content and sources, as well as how they reflect on their own biases when making judgments about scientific information.</div>
+          </div>
+        </div>
+
+        <!-- Noora Noushad -->
+        <div class="team-card">
+          <div class="team-photo">
+            <div class="team-photo-ph">
+              <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+              <span>Photo coming soon</span>
+            </div>
+          </div>
+          <div class="team-info">
+            <div class="team-name">Noora Noushad, Ph.D</div>
+            <div class="team-role">Postdoctoral Research Fellow</div>
+            <div class="team-affil">Director, Research Administration &amp; STEM Education at CEMB</div>
+            <div class="team-bio">A learning scientist who specializes in promoting the integration of robust and meaningful scientific and epistemic practices into high school classrooms. Her research focuses on effective and high-quality practices for teacher professional development relating to relevant real-world epistemic practices.</div>
+          </div>
+        </div>
+
+      </div><!-- /current -->
+
+      <!-- =================== COLLABORATORS =================== -->
+      <div data-section="collab" data-group="team" class="collab-grid">
+
+        <div class="collab-card">
+          <div class="collab-avatar">LD</div>
+          <div class="collab-info">
+            <div class="collab-name">Lauren DeNicola</div>
+            <div class="collab-title">Teacher of Biological Sciences</div>
+            <div class="collab-role">A current high school Biology teacher who creates meaningful learning experiences for students that challenge their problem solving skills and offer opportunities for developing relevant scientific practices. Her classroom instruction integrates complex systems and epistemic practices to help students develop critical thinking strategies, and a scientific approach to make decisions about real-world problems.</div>
+          </div>
+        </div>
+
+        <div class="collab-card">
+          <div class="collab-avatar">ZY</div>
+          <div class="collab-info">
+            <div class="collab-name">Zhitong (Lin) Yang, Ed.D</div>
+            <div class="collab-title">NJ Department of Education</div>
+            <div class="collab-role">An expert in measurements and assessments of learning who specializes in high school and college-level assessment. His research focuses on K-12 science performance assessment, non-cognitive measures for workforce readiness, and higher education outcome measurement.</div>
+          </div>
+        </div>
+
+        <div class="collab-card">
+          <div class="collab-avatar">BC</div>
+          <div class="collab-info">
+            <div class="collab-name">Betty Chandy, Ed.D</div>
+            <div class="collab-title">Director, Technology Integration and Learning Design at Catalyst</div>
+            <div class="collab-role">A designer and director of PASS at Catalyst. Her research and program design work explore online learning, computational thinking, teacher development, and the role of new technologies in expanding opportunity for students.</div>
+            <a class="collab-link" href="https://www.gse.upenn.edu/faculty/betty-chandy" target="_blank" rel="noopener">Faculty Profile →</a>
+          </div>
+        </div>
+
+        <div class="collab-card">
+          <div class="collab-avatar">TA</div>
+          <div class="collab-info">
+            <div class="collab-name">Tugce Aldemir, Ph.D</div>
+            <div class="collab-title">Assistant Professor at Texas A&amp;M University</div>
+            <div class="collab-role">An expert in classroom-ready designs and technology-supported learning experiences that braid key computing competencies. Currently leading two internally funded projects: (1) AI literacy &amp; CT for non-CS preservice teachers; (2) Sustainable agriculture &amp; AI mentor for middle school, rural contexts.</div>
+            <a class="collab-link" href="https://directory.education.tamu.edu/view/taldemir" target="_blank" rel="noopener">Faculty Profile →</a>
+          </div>
+        </div>
+
+        <div class="collab-card">
+          <div class="collab-avatar">AC</div>
+          <div class="collab-info">
+            <div class="collab-name">Amanda Cottone, Ed.D</div>
+            <div class="collab-title">Director, Research Administration &amp; STEM Education at CEMB</div>
+            <div class="collab-role">A STEM education specialist who expands the impact of the RET program. Her research focuses on K-12 students' development of data literacy and scientific reasoning skills through the use of classroom technologies and engagement in inquiry, real-world data collection, and problem-based learning.</div>
+            <a class="collab-link" href="https://cemb.upenn.edu/about-cemb/staff/" target="_blank" rel="noopener">Staff Profile →</a>
+          </div>
+        </div>
+
+        <div class="collab-card">
+          <div class="collab-avatar">JS</div>
+          <div class="collab-info">
+            <div class="collab-name">Jooeun Shim, Ed.D</div>
+            <div class="collab-title">Assistant Professor of Teaching, Teachers College, Columbia University</div>
+            <div class="collab-role">An app designer, learning scientist, and mobile learning expert who specializes in supporting teachers as they integrate novel technologies and teaching methods into their classroom instruction. Her research focuses on culturally relevant teaching for STEM integration in K-12 classrooms.</div>
+            <a class="collab-link" href="https://www.tc.columbia.edu/faculty/js4719/" target="_blank" rel="noopener">Faculty Profile →</a>
+          </div>
+        </div>
+
+        <div class="collab-card">
+          <div class="collab-avatar">KM</div>
+          <div class="collab-info">
+            <div class="collab-name">Kate Miller, Ph.D</div>
+            <div class="collab-title">Research Associate at The Concord Consortium</div>
+            <div class="collab-role">An expert in data literacy who specializes in integrating data literacy in K-12 and interdisciplinary contexts. Her research focuses on pedagogical content knowledge for data literacy and practical applications for data literacy in schools.</div>
+            <a class="collab-link" href="https://concord.org/about/staff/kate-miller/" target="_blank" rel="noopener">Staff Profile →</a>
+          </div>
+        </div>
+
+        <div class="collab-card">
+          <div class="collab-avatar">JK</div>
+          <div class="collab-info">
+            <div class="collab-name">Jacqueline Katz</div>
+            <div class="collab-title">K-12 Science Supervisor, Princeton Public Schools</div>
+            <div class="collab-role">Prior to this role, she spent 13 years teaching high school Biology, Chemistry, and Research. Her classroom goals include cultivating a strong foundation for inquiry and authentic scientific practices. She has been a member of the DeTECT team for nearly a decade, contributing to instructional tools that support the development of students' scientific epistemic practices.</div>
+          </div>
+        </div>
+
+        <div class="collab-card">
+          <div class="collab-avatar">JS</div>
+          <div class="collab-info">
+            <div class="collab-name">Jennifer Smolyn</div>
+            <div class="collab-title">Biology &amp; Research Teacher, Princeton High School</div>
+            <div class="collab-role">A current public school teacher teaching freshman and AP Biology, as well as a three-year Research Program. Her educational interests include curriculum development, promoting data literacy and scientific reasoning, providing authentic student research experiences, and engaging in teacher leadership.</div>
+          </div>
+        </div>
+
+      </div><!-- /collaborators -->
+
+      <!-- =================== FORMER MEMBERS =================== -->
+      <div data-section="former" data-group="team" class="former-grid">
+
+        <div class="former-card">
+          <div class="former-av">CE</div>
+          <div>
+            <div class="former-name">Chad Evans, Ph.D</div>
+            <div class="former-role">Teacher</div>
+          </div>
+        </div>
+
+        <div class="former-card">
+          <div class="former-av">AM</div>
+          <div>
+            <div class="former-name">Amin Marei, Ph.D</div>
+            <div class="former-role">Adjunct Lecturer on Education, Harvard Graduate School of Education</div>
+          </div>
+          <a class="former-link" href="https://www.gse.harvard.edu/directory/faculty/amin-marei" target="_blank" rel="noopener">Bio →</a>
+        </div>
+
+        <div class="former-card">
+          <div class="former-av">JV</div>
+          <div>
+            <div class="former-name">Jacqueline Van Schooneveld, Ed.D</div>
+            <div class="former-role">Professor at West Chester University</div>
+          </div>
+          <a class="former-link" href="https://www.wcupa.edu/education-socialWork/earlyMiddleGrades/jSchooneveld.aspx" target="_blank" rel="noopener">Bio →</a>
+        </div>
+
+        <div class="former-card">
+          <div class="former-av">SG</div>
+          <div>
+            <div class="former-name">Sao-Ee Goh, Ph.D</div>
+            <div class="former-role">Director at Ministry of Education, Singapore</div>
+          </div>
+        </div>
+
+        <div class="former-card">
+          <div class="former-av">KB</div>
+          <div>
+            <div class="former-name">Kira Baker-Doyle, Ph.D</div>
+            <div class="former-role">Associate Professor at University of Illinois Chicago</div>
+          </div>
+          <a class="former-link" href="https://education.uic.edu/profiles/baker-doyle-kira/" target="_blank" rel="noopener">Bio →</a>
+        </div>
+
+        <div class="former-card">
+          <div class="former-av">JL</div>
+          <div>
+            <div class="former-name">Joyce Lin, Ed.D</div>
+            <div class="former-role">Associate Director, Teacher Development at Knowles Teacher Initiative</div>
+          </div>
+          <a class="former-link" href="https://knowlesteachers.org/bios/joyce-lin-3" target="_blank" rel="noopener">Bio →</a>
+        </div>
+
+        <div class="former-card">
+          <div class="former-av">JK</div>
+          <div>
+            <div class="former-name">Jessica Koehler, Ph.D</div>
+            <div class="former-role">Director of Research, Evaluation and Strategic Integration at Wake Forest University</div>
+          </div>
+          <a class="former-link" href="https://leadershipandcharacter.wfu.edu/people/jessica-koehler/" target="_blank" rel="noopener">Bio →</a>
+        </div>
+
+        <div class="former-card">
+          <div class="former-av">LL</div>
+          <div>
+            <div class="former-name">Lei Liu, Ph.D</div>
+            <div class="former-role">Research Director at ETS · Adjunct Professor at University of Pennsylvania</div>
+          </div>
+          <a class="former-link" href="https://orcid.org/0000-0002-8327-2700" target="_blank" rel="noopener">ORCID →</a>
+        </div>
+
+        <div class="former-card">
+          <div class="former-av">TR</div>
+          <div>
+            <div class="former-name">Thomas Richman, Ph.D</div>
+          </div>
+        </div>
+
+        <div class="former-card">
+          <div class="former-av">EA</div>
+          <div>
+            <div class="former-name">Emma Anderson, Ph.D</div>
+            <div class="former-role">Research Scientist at MIT</div>
+          </div>
+          <a class="former-link" href="https://education.mit.edu/person/emma-anderson/" target="_blank" rel="noopener">Bio →</a>
+        </div>
+
+        <div class="former-card">
+          <div class="former-av">MP</div>
+          <div>
+            <div class="former-name">Miyoung Park</div>
+          </div>
+        </div>
+
+      </div><!-- /former -->
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><span class="logo-node"></span>CRADLE Lab</div>
+      <p class="footer-desc">Complex Systems Research and Design of Learning Environments · University of Pennsylvania, Graduate School of Education</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <p><a href="../index.html">About</a><br><a href="projects.html">Projects</a><br><a href="team.html">Our Team</a><br><a href="publications.html">Publications</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>3700 Walnut Street<br>Philadelphia, PA 19104<br><a href="mailto:yoonsa@upenn.edu">yoonsa@upenn.edu</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">Copyright © 2026 CRADLE Lab · Penn Graduate School of Education</div>
+</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CRADLE Lab — University of Pennsylvania GSE</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <style>
+    /* ---- HERO ---- */
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 96px 0 80px;
+      border-bottom: 1px solid var(--border);
+    }
+    /* Animated network SVG background */
+    .hero-network {
+      position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
+      width: 520px; opacity: 0.22; pointer-events: none;
+    }
+    @keyframes pulse { 0%,100%{opacity:.22} 50%{opacity:.30} }
+    .hero-network { animation: pulse 6s ease-in-out infinite; }
+
+    .hero-content { position: relative; z-index: 2; max-width: 620px; }
+    .hero-eyebrow {
+      font-family: var(--font-display); font-size: 10.5px; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 22px; display: flex; align-items: center; gap: 10px;
+    }
+    .hero-eyebrow::before { content:''; width: 22px; height:1px; background: var(--cyan); }
+
+    .hero h1 {
+      font-family: var(--font-display); font-size: 52px; font-weight: 700;
+      color: var(--text-bright); line-height: 1.1; letter-spacing: -0.03em;
+    }
+    .hero h1 .accent { color: var(--cyan); }
+    .hero-sub {
+      margin-top: 20px; font-size: 18px; font-weight: 300;
+      color: var(--text-muted); line-height: 1.7; max-width: 540px;
+    }
+    .hero-actions { margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* ---- STATS ---- */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-cell {
+      padding: 28px 32px; border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-cell::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(to right, var(--cyan-dim), transparent);
+    }
+    .stat-num {
+      font-family: var(--font-display); font-size: 34px; font-weight: 700;
+      color: var(--cyan); letter-spacing: -0.03em; line-height: 1;
+    }
+    .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 5px; line-height: 1.4; }
+
+    /* ---- ABOUT GRID ---- */
+    .about-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 64px; align-items: start; }
+    .about-text p { color: var(--text); line-height: 1.8; margin-bottom: 18px; font-size: 15.5px; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--text-bright); font-weight: 500; }
+
+    /* ---- RESEARCH AREAS ---- */
+    .areas-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .area-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 22px 22px 20px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .area-card:hover { border-color: var(--border-mid); box-shadow: var(--glow); }
+    .area-card .dot { width:7px; height:7px; border-radius:50%; background: var(--cyan); box-shadow: 0 0 6px var(--cyan-glow); margin-bottom:12px; }
+    .area-card h3 { font-family: var(--font-display); font-size:14px; font-weight:500; color:var(--text-bright); margin-bottom:6px; }
+    .area-card p  { font-size:13px; color:var(--text-muted); line-height:1.65; }
+
+    /* ---- CONTACT ---- */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .contact-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 28px 30px;
+    }
+    .contact-card h3 { font-family: var(--font-display); font-size:13px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--cyan); margin-bottom:14px; }
+    .contact-card p  { font-size:14px; color:var(--text); line-height:1.9; }
+    .contact-card a  { color:var(--cyan); }
+
+    @media(max-width:900px){
+      .hero h1 { font-size:36px; }
+      .hero-network { display:none; }
+      .stats-row { grid-template-columns:repeat(2,1fr); }
+      .about-grid { grid-template-columns:1fr; }
+      .areas-grid { grid-template-columns:repeat(2,1fr); }
+      .contact-grid { grid-template-columns:1fr; }
+    }
+    @media(max-width:600px){
+      .areas-grid { grid-template-columns:1fr; }
+      .stats-row { grid-template-columns:repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-node"></span>CRADLE Lab
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">About</a>
+      <a href="pages/projects.html">Projects</a>
+      <a href="pages/team.html">Our Team</a>
+      <a href="pages/publications.html">Publications</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Network visualization background -->
+  <svg class="hero-network" viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#1a5ea8" stroke-width="0.7" opacity="0.8">
+      <line x1="240" y1="30" x2="380" y2="120"/><line x1="240" y1="30" x2="100" y2="120"/>
+      <line x1="240" y1="30" x2="240" y2="170"/><line x1="380" y1="120" x2="420" y2="260"/>
+      <line x1="380" y1="120" x2="300" y2="200"/><line x1="100" y1="120" x2="60" y2="260"/>
+      <line x1="100" y1="120" x2="180" y2="200"/><line x1="240" y1="170" x2="300" y2="200"/>
+      <line x1="240" y1="170" x2="180" y2="200"/><line x1="420" y1="260" x2="380" y2="360"/>
+      <line x1="420" y1="260" x2="300" y2="320"/><line x1="60" y1="260" x2="100" y2="360"/>
+      <line x1="60" y1="260" x2="180" y2="320"/><line x1="300" y1="200" x2="300" y2="320"/>
+      <line x1="180" y1="200" x2="180" y2="320"/><line x1="300" y1="200" x2="240" y2="280"/>
+      <line x1="180" y1="200" x2="240" y2="280"/><line x1="380" y1="360" x2="300" y2="440"/>
+      <line x1="100" y1="360" x2="180" y2="440"/><line x1="300" y1="320" x2="240" y2="400"/>
+      <line x1="180" y1="320" x2="240" y2="400"/><line x1="380" y1="360" x2="240" y2="400"/>
+      <line x1="100" y1="360" x2="240" y2="400"/><line x1="240" y1="280" x2="300" y2="320"/>
+      <line x1="240" y1="280" x2="180" y2="320"/><line x1="300" y1="440" x2="180" y2="440"/>
+      <line x1="420" y1="260" x2="240" y2="280"/><line x1="60" y1="260" x2="240" y2="280"/>
+    </g>
+    <!-- Navy nodes -->
+    <circle cx="240" cy="30"  r="5" fill="#1a5ea8"/>
+    <circle cx="380" cy="120" r="4" fill="#1a5ea8"/>
+    <circle cx="100" cy="120" r="4" fill="#1a5ea8"/>
+    <circle cx="240" cy="170" r="3.5" fill="#1a5ea8"/>
+    <circle cx="420" cy="260" r="4" fill="#1a5ea8"/>
+    <circle cx="60"  cy="260" r="4" fill="#1a5ea8"/>
+    <circle cx="380" cy="360" r="3.5" fill="#1a5ea8"/>
+    <circle cx="100" cy="360" r="3.5" fill="#1a5ea8"/>
+    <circle cx="300" cy="440" r="4" fill="#1a5ea8"/>
+    <circle cx="180" cy="440" r="4" fill="#1a5ea8"/>
+    <!-- Amber nodes -->
+    <circle cx="300" cy="200" r="6"  fill="#c97a1e"/>
+    <circle cx="180" cy="200" r="5"  fill="#c97a1e"/>
+    <circle cx="240" cy="400" r="5.5" fill="#c97a1e"/>
+    <!-- Coral nodes -->
+    <circle cx="300" cy="320" r="7" fill="#b83a2a"/>
+    <circle cx="180" cy="320" r="5" fill="#b83a2a"/>
+    <!-- Navy glow node -->
+    <circle cx="240" cy="280" r="8" fill="#1a5ea8" opacity="0.9"/>
+    <circle cx="240" cy="280" r="14" fill="#1a5ea8" opacity="0.08"/>
+  </svg>
+
+  <div class="container">
+    <div class="hero-content">
+      <p class="hero-eyebrow">University of Pennsylvania · Graduate School of Education</p>
+      <h1>Complex Systems<br>Research &amp; <span class="accent">Learning Design</span></h1>
+      <p class="hero-sub">The CRADLE Lab applies complex systems approaches to design learning environments, curricula, and professional development for science classrooms and K–12 educators worldwide.</p>
+      <div class="hero-actions">
+        <a href="pages/projects.html" class="btn btn-primary">Explore Research →</a>
+        <a href="pages/publications.html" class="btn btn-outline">Publications</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-cell"><div class="stat-num">20+</div><div class="stat-label">Partner countries worldwide</div></div>
+  <div class="stat-cell"><div class="stat-num">2</div><div class="stat-label">Active NSF-funded projects</div></div>
+  <div class="stat-cell"><div class="stat-num">100s</div><div class="stat-label">Teachers &amp; students reached</div></div>
+  <div class="stat-cell"><div class="stat-num">K–12</div><div class="stat-label">Science education focus</div></div>
+</div>
+
+<main>
+  <!-- ABOUT -->
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-label">About the Lab</p>
+          <h2>Who We Are</h2>
+          <p>The <strong>CRADLE Lab</strong> — located at the University of Pennsylvania Graduate School of Education — applies complex systems approaches for teaching in order to design learning environments and curricula for science classrooms and professional development (PD) for science teachers.</p>
+          <p>The CRADLE Lab was founded by <strong>Dr. Susan Yoon</strong>, and the lab comprises a diverse team of researchers, instructional designers, and K–12 educators. We are regularly designing and implementing new publicly available PD programs, so we encourage you to sign up for our mailing list if you would be interested in participating in future PD programs.</p>
+          <p>We have partnered with teachers from more than <strong>20 different countries</strong>, and we have collaborated with researchers and scientists from MIT, Rutgers, the Philadelphia Zoo, and Children's Hospital of Philadelphia, among many more. Our team is continuously evolving, and we are always in search of new collaborators.</p>
+          <div class="mt-lg" style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="pages/team.html" class="btn btn-primary">Meet the Team →</a>
+        </div>
+        </div>
+        <div>
+          <div class="photo-placeholder" style="min-height:300px;">
+            <svg width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Lab photo coming soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH AREAS -->
+  <section class="section" style="background:rgba(5,13,26,0.4);">
+    <div class="container">
+      <p class="section-label">Research Focus</p>
+      <h2>What We Study</h2>
+      <div class="areas-grid">
+        <div class="area-card"><div class="dot"></div><h3>Complex Systems Science</h3><p>Agent-based simulations and curricula revealing emergent phenomena in biology classrooms.</p></div>
+        <div class="area-card"><div class="dot" style="background:var(--amber);box-shadow:0 0 6px rgba(232,145,62,.4);"></div><h3>Epistemic Practices</h3><p>Supporting authentic engagement with how scientific knowledge is produced and evaluated.</p></div>
+        <div class="area-card"><div class="dot" style="background:var(--coral);box-shadow:0 0 6px rgba(217,79,61,.4);"></div><h3>Teacher Professional Development</h3><p>Innovative in-person and online PD programs promoting adaptive expertise for K–12 teachers.</p></div>
+        <div class="area-card"><div class="dot"></div><h3>Bioinformatics &amp; Data Literacy</h3><p>Integrating real-world data collection into high school science through mobile technology and local inquiry.</p></div>
+        <div class="area-card"><div class="dot" style="background:var(--amber);box-shadow:0 0 6px rgba(232,145,62,.4);"></div><h3>Curricular Co-Design</h3><p>Partnering with teachers as co-designers to build practice- and research-informed science curricula.</p></div>
+        <div class="area-card"><div class="dot" style="background:var(--coral);box-shadow:0 0 6px rgba(217,79,61,.4);"></div><h3>Learning Environments</h3><p>AR, online, and in-person experiences revealing patterns not visible through traditional approaches.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Get in Touch</p>
+      <h2>Contact Us</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Principal Investigator</h3>
+          <p><strong style="color:var(--text-bright);">Susan Yoon, PhD</strong><br>
+          GSE Presidential Professor<br>Associate Dean for Research and Faculty Affairs<br><br>
+          <a href="mailto:yoonsa@upenn.edu">yoonsa@upenn.edu</a></p>
+        </div>
+        <div class="contact-card">
+          <h3>Lab Address</h3>
+          <p>Penn Graduate School of Education<br>3700 Walnut Street<br>Philadelphia, PA 19104<br><br>
+          Questions about the CRADLE Lab? Please feel free to get in touch.</p>
+          <div style="margin-top:16px;">
+            <a href="mailto:cradlelab.penn.gse@gmail.com" class="btn btn-outline" style="font-size:13px;">cradlelab.penn.gse@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><span class="logo-node"></span>CRADLE Lab</div>
+      <p class="footer-desc">Complex Systems Research and Design of Learning Environments · University of Pennsylvania, Graduate School of Education</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <p><a href="index.html">About</a><br><a href="pages/projects.html">Projects</a><br><a href="pages/team.html">Our Team</a><br><a href="pages/publications.html">Publications</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>3700 Walnut Street<br>Philadelphia, PA 19104<br><a href="mailto:yoonsa@upenn.edu">yoonsa@upenn.edu</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">Copyright © 2026 CRADLE Lab · Penn Graduate School of Education</div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Publications — CRADLE Lab</title>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <style>
+    .yr-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:44px; }
+    .yr-pill {
+      font-family:var(--font-display); font-size:12.5px; font-weight:400;
+      padding:6px 18px; border-radius:20px; cursor:pointer;
+      background:var(--panel); color:var(--text-muted); border:1px solid var(--border);
+      transition:all .15s;
+    }
+    .yr-pill:hover, .yr-pill.active {
+      background:var(--cyan-dim); color:var(--cyan); border-color:var(--border-mid);
+    }
+
+    .pub-block { margin-bottom:52px; }
+    .pub-year-head {
+      display:flex; align-items:center; gap:14px; margin-bottom:22px;
+    }
+    .pub-year-num {
+      font-family:var(--font-display); font-size:26px; font-weight:700;
+      color:var(--text-bright); letter-spacing:-0.03em;
+    }
+    .pub-year-count {
+      font-family:var(--font-display); font-size:11px; font-weight:500;
+      background:var(--cyan-dim); color:var(--cyan); border:1px solid rgba(62,184,232,.22);
+      padding:2px 10px; border-radius:20px; letter-spacing:.04em;
+    }
+    .pub-yr-line { flex:1; height:1px; background:linear-gradient(to right,var(--border-mid),transparent); }
+
+    .pub-entry {
+      display:flex; gap:14px; align-items:flex-start;
+      padding:15px 0; border-bottom:1px solid var(--border);
+    }
+    .pub-entry:last-child { border-bottom:none; }
+    .pub-node {
+      width:7px; height:7px; border-radius:50%; flex-shrink:0; margin-top:7px;
+      background:var(--cyan); box-shadow:0 0 5px var(--cyan-glow);
+    }
+    .pub-node.amber { background:var(--amber); box-shadow:0 0 5px rgba(232,145,62,.35); }
+    .pub-node.coral { background:var(--coral); box-shadow:0 0 5px rgba(217,79,61,.35); }
+    .pub-node.white { background:var(--node-white); box-shadow:none; }
+    .pub-txt { flex:1; }
+    .pub-cite { font-size:14px; color:var(--text); line-height:1.78; }
+    .pub-cite em     { font-style:italic; color:var(--text-bright); }
+    .pub-cite strong { font-weight:600; color:var(--text-bright); }
+    .pub-cite a      { color:var(--cyan); word-break:break-word; }
+    .pub-badges { margin-top:6px; display:flex; gap:6px; flex-wrap:wrap; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo"><span class="logo-node"></span>CRADLE Lab</a>
+    <div class="nav-links">
+      <a href="../index.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="team.html">Our Team</a>
+      <a href="publications.html" class="active">Publications</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <p class="section-label">Scholarly Work</p>
+    <h1>Publications</h1>
+    <p>Journal articles, conference papers, and book chapters from the CRADLE Lab research group.</p>
+  </div>
+</div>
+
+<main>
+  <section class="section">
+    <div class="container">
+
+      <div class="yr-row">
+        <button class="yr-pill active" data-yr="all">All Years</button>
+        <button class="yr-pill" data-yr="2026">2026</button>
+        <button class="yr-pill" data-yr="2025">2025</button>
+        <button class="yr-pill" data-yr="2024">2024</button>
+        <button class="yr-pill" data-yr="2023">2023</button>
+        <button class="yr-pill" data-yr="2022">2022</button>
+        <button class="yr-pill" data-yr="2021">2021</button>
+      </div>
+
+      <!-- ===== 2026 ===== -->
+      <div class="pub-block" data-year="2026">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2026</span>
+          <span class="pub-year-count">4 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Cottone, A. M., Zheng, B., Zhao, J., Yoon, S. A., Kaloustian, T., Li, H., &amp; Wells, R. G. (2026). Investigating systems complexity with the venus flytrap (<em>Dionaea muscipula</em>) using multiple models: Introducing high school students to approaches in mechanobiology. <em>Systems, 14</em>(3), 331. <a href="https://doi.org/10.3390/systems14030331" target="_blank" rel="noopener">https://doi.org/10.3390/systems14030331</a></div>
+            <div class="pub-badges"><span class="tag">Journal Article</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node amber"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yoon, S. A., Shim, J., Cottone, A. M., Miller, K., &amp; Noushad, N. (in press). Making the case to improve teachers' STEM-integrated content knowledge: An analysis of teachers' adaptive expertise and impacts on student classroom experiences. <em>International Journal of STEM Education.</em></div>
+            <div class="pub-badges"><span class="tag">Journal Article</span><span class="tag inpress">In Press</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node amber"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Aldemir, T., Yoon, S. A., Miller, K., &amp; Shim, J. (in press). Teachers as co-designers: Fostering equitable participation through relational trust. <em>AERA Open.</em></div>
+            <div class="pub-badges"><span class="tag">Journal Article</span><span class="tag inpress">In Press</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node amber"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Noushad, N., Shim, J., &amp; Yoon, S. A. (in press). Investigating epistemic opportunities: a contrastive case study of two high school teachers' instructional strategies to support student's agency. <em>Journal of Science Teacher Education.</em></div>
+            <div class="pub-badges"><span class="tag">Journal Article</span><span class="tag inpress">In Press</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 2025 ===== -->
+      <div class="pub-block" data-year="2025">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2025</span>
+          <span class="pub-year-count">4 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yoon, S.A., Miller, K.M., Richman, T., Noushad, N., Zhang, W., Hageman, G., Yueqiao, L., &amp; Cottone, A. (2025). Developing teachers' disciplinary knowledge in the K-12 STEM integration field: A review of a decade of educational research. <em>Review of Educational Research</em>, <em>95</em>(6), 1337–1378. <a href="https://doi.org/10.3102/00346543241289566" target="_blank" rel="noopener">https://doi.org/10.3102/00346543241289566</a></div>
+            <div class="pub-badges"><span class="tag">Journal Article</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yoon, S.A., Shim, J., Zhang, W., Leung, V., &amp; Nguyen, Z. (2025). Epistemic emotions and their triggering of further epistemic engagement in a socioscientific high school unit on bioinformatics and air quality. Symposium paper in the <em>Proceedings of the 19th International Conference of the Learning Sciences-ICLS 2025</em>. Helsinki, Finland. <a href="https://doi.org/10.22318/icls2025.355776" target="_blank" rel="noopener">https://doi.org/10.22318/icls2025.355776</a></div>
+            <div class="pub-badges"><span class="tag">Conference Paper</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yang, Z., Yoon, S.A., Chinn, C., Hunkar, K., Hussain-Abidi, H., &amp; Noushad, N. (2025). Building student epistemic practices through curriculum design: An empirical study. Long paper in the <em>Proceedings of ICLS 2025</em>. Helsinki, Finland. <a href="https://doi.org/10.22318/icls2025.161813" target="_blank" rel="noopener">https://doi.org/10.22318/icls2025.161813</a></div>
+            <div class="pub-badges"><span class="tag">Conference Paper</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Noushad, N.F., Yoon, S.A., Chinn, C., Yang, Z., LeBovidge, C., Hunkar, K., &amp; Hussain-Abidi, H. (2025). The making of competent outsiders: Using epistemic practices of science to enhance student's critical evaluation of misleading scientific explanations in classrooms. Short paper in the <em>Proceedings of ICLS 2025</em>. Helsinki, Finland. <a href="https://doi.org/10.22318/icls2025.913852" target="_blank" rel="noopener">https://doi.org/10.22318/icls2025.913852</a></div>
+            <div class="pub-badges"><span class="tag">Conference Paper</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 2024 ===== -->
+      <div class="pub-block" data-year="2024">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2024</span>
+          <span class="pub-year-count">9 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Shim, J., &amp; Yoon, S.A. (2024). Improving STEM education through resource activation: A study of culturally relevant teaching for critical data literacy in a high school science classroom. <em>Journal of Research in Science, Mathematics and Technology Education, 7,</em> 1-26. <a href="https://doi.org/10.31756/jrsmte.311SI" target="_blank" rel="noopener">https://doi.org/10.31756/jrsmte.311SI</a></div>
+            <div class="pub-badges"><span class="tag">Journal Article</span><span class="tag award">Best Paper Award</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yoon, S.A., Chinn, C., Richman, T., Noushad, N., Hussain-Abidi, H., Hunkar, K., &amp; Yang, A. (2024). Instructional epistemic frames in professional development of high school biology teachers. Symposium paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.370767" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.370767</a></div>
+            <div class="pub-badges"><span class="tag">Conference Paper</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yoon, S.A. (2024). Developing teachers' adaptive expertise for ambitious instruction and disciplinary learning. Symposium in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.370767" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.370767</a></div>
+            <div class="pub-badges"><span class="tag">Conference Paper</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yoon, S.A., Shim, J., Leung, V.Y., &amp; Nguyen, Y. (2024). "OMG that's crazy!" Examining the role of high school biology students' epistemic emotions in data investigations of neighborhood air quality. Symposium paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.702524" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.702524</a></div>
+            <div class="pub-badges"><span class="tag">Conference Paper</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yang, Z., Yoon, S.A., Chinn, C., Cottone, A., Richman, T., Noushad, N., Hussain-Abidi, H., &amp; Hunkar, K. (2024). Examining teachers' implementation of scientific epistemic practices curricula through an adaptive expertise lens: A case study. Long paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.431352" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.431352</a></div>
+            <div class="pub-badges"><span class="tag">Conference Paper</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Noushad, N., Yoon, S.A., Chinn, C., Yang, Z., Hussain-Abidi, H., &amp; Hunkar, H. (2024). "Scientists don't know the truth; they tell you what they know to be true!": Shaping high school students understanding of how scientists establish trustworthy claims using epistemic practices. Long paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.513395" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.513395</a></div>
+            <div class="pub-badges"><span class="tag">Conference Paper</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Aldemir, T., Shim, J., &amp; Yoon, S.A. (2024). Teachers as co-thinkers and facilitators: Unpacking teacher-student dynamics in co-design partnerships. Symposium paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.752026" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.752026</a></div>
+            <div class="pub-badges"><span class="tag">Conference Paper</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Aldemir, T., Shim, J., &amp; Yoon, S.A. (2024). Empowering voices: Promoting equitable participation in student-inclusive co-design research-practice partnerships. Long paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.589952" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.589952</a></div>
+            <div class="pub-badges"><span class="tag">Conference Paper</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Hussain-Abidi, H., Hunkar, H., Chinn, C., Yoon, S.A., Noushad, N., &amp; Yang, Z. (2024). Using Apt-AIR to guide the design and analysis of a socio-scientific unit. Symposium paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.891203" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.891203</a></div>
+            <div class="pub-badges"><span class="tag">Conference Paper</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 2023 ===== -->
+      <div class="pub-block" data-year="2023">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2023</span>
+          <span class="pub-year-count">10 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+
+        <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S.A., Chinn, C., Noushad, N., Richman, T., Hussain-Abidi, H., Hunkar, K., Cottone, A., Katz, J., Mitkus, E., &amp; Wendel, D. (2023). Seven design principles for teaching complex socioscientific issues: the design of a complex systems agent-based disease epidemic model and the application of epistemic practices in high school biology. <em>Frontiers in Education 8</em>(1210153). <a href="https://doi.org/10.3389/feduc.2023.1210153" target="_blank" rel="noopener">https://doi.org/10.3389/feduc.2023.1210153</a></div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Chinn, C., Yoon, S.A., Hussain-Abidi, H., Hunkar, K., Noushad, N., &amp; Richman, T. (2023). Designing learning environments to promote good thinking in a post-truth world: An example from science education. <em>European Journal of Education</em>, <em>58</em>(3), 407–421. <a href="https://doi.org/10.1111/ejed.12573" target="_blank" rel="noopener">https://doi.org/10.1111/ejed.12573</a></div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Miller, K.M., &amp; Yoon, S.A. (2023). Teaching complexity in biology through agent-based simulations: The relationship between students' knowledge of complex systems and modeling. <em>Frontiers in Education</em>, <em>8</em>(1198307). <a href="https://doi.org/10.3389/feduc.2023.1198307" target="_blank" rel="noopener">https://doi.org/10.3389/feduc.2023.1198307</a></div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Cottone, A. M., Yoon, S.A., Shim, J., Coulter, B., &amp; Carman, S. (2023). Evaluating apt epistemic processes in support of data literacy in elementary school students. <em>Instructional Science</em>, <em>51</em>, 1–37. <a href="https://awspntest.apa.org/doi/10.1007/s11251-022-09610-8" target="_blank" rel="noopener">https://doi.org/10.1007/s11251-022-09610-8</a></div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. A., Shim, J., Cottone, A., Noushad N., Yoo, J., &amp; Miller, K. (2023). Professional development for STEM integration: Analyzing bioinformatics teaching through considerations of adaptive expertise and cognitive load. In A. Superfine, S. Goldman, and M. Ko (Eds), <em>Teacher Learning in Changing Contexts</em> (pp. 69–90). Routledge Press. <a href="https://doi.org/10.4324/9781003097112" target="_blank" rel="noopener">https://doi.org/10.4324/9781003097112</a></div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Shim, J., &amp; Yoon, S.A. (2023). Activating resources for incorporating culturally relevant teaching in STEM curricula. <em>Proceedings of ICLS 2023</em>. Montreal, Canada. <a href="https://doi.org/10.22318/icls2023.643529" target="_blank" rel="noopener">https://doi.org/10.22318/icls2023.643529</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Cottone, A., Yoon, S.A., Richman, T., Chinn, C., Hussain-Abidi, H., &amp; Noushad, N. (2023). Examining the effects of teacher instructional approaches on shifting students' experiences towards epistemic practices during scientific modeling. <em>Proceedings of ICLS 2023</em>. Montreal, Canada. <a href="https://doi.org/10.22318/icls2023.200377" target="_blank" rel="noopener">https://doi.org/10.22318/icls2023.200377</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Miller, K., &amp; Yoon, S.A. (2023). Supporting high school science teachers in developing pedagogical content knowledge for data literacy. <em>Proceedings of ICLS 2023</em>. Montreal, Canada. <a href="https://doi.org/10.22318/icls2023.694470" target="_blank" rel="noopener">https://doi.org/10.22318/icls2023.694470</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Aldemir, T., Yoon, S.A., Miller, K., &amp; Shim, J. (2023). Teachers as co-designers: Forming equitable participation through the lens of relational trust. <em>Proceedings of ICLS 2023</em>. Montreal, Canada. <a href="https://doi.org/10.22318/icls2023.875205" target="_blank" rel="noopener">https://doi.org/10.22318/icls2023.875205</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Hussain-Abidi, H., Hunkar, K., Chinn, C.A., Yoon, S.A., Cottone, A.C., Noushad, N.F., &amp; Richman, T. (2023). Analyzing teacher epistemic moves in science classrooms. <em>Proceedings of ICLS 2023</em>. Montreal, Canada. <a href="https://doi.org/10.22318/icls2023.977729" target="_blank" rel="noopener">https://doi.org/10.22318/icls2023.977729</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+      </div>
+
+      <!-- ===== 2022 ===== -->
+      <div class="pub-block" data-year="2022">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2022</span>
+          <span class="pub-year-count">10 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+
+        <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S.A. (2022). Designing complex systems curricula for high school biology: A decade of work with the BioGraph project. In Knipples, M.C. and Ben Zvi Assaraf, O. (Eds.) <em>Fostering Understanding of Complex Systems in Biology Education</em> (pp. 227–248). Routledge Press.</div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Housh, K., Hmelo-Silver, C., &amp; Yoon, S. (2022). Theoretical perspectives on complex systems in biology education. In Knipples, M.C. and Ben Zvi Assaraf, O. (Eds.) <em>Understanding Complexity in Biology Education</em>. Routledge Press.</div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Chinn, C., Cottone, A., Richman, T., Noushad, N., &amp; Hussain-Abidi, H. (2022). Forging pathways from computational complex systems models to current socioscientific issues through scientific epistemic practices. <em>Proceedings of CSCL 2022</em>. Hiroshima, Japan. <a href="https://dx.doi.org/10.22318/icls2022.1699" target="_blank" rel="noopener">https://dx.doi.org/10.22318/icls2022.1699</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Noushad, F.N., Cottone, A., Hussain-Abidi, H., Yoon, S., &amp; Chinn, C. (2022). Epistemic Practices that Advance Learning of Complex Systems [Structured Poster Presentation]. <em>Proceedings of CSCL 2022</em>. Hiroshima, Japan.</div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Chinn, C., &amp; Noushad, N. (2022). Frameworks and methodologies for epistemic growth in K-12 science classrooms to address post-truth discourse. <em>Proceedings of CSCL 2022</em>. Hiroshima, Japan. <a href="https://dx.doi.org/10.22318/icls2022.1683" target="_blank" rel="noopener">https://dx.doi.org/10.22318/icls2022.1683</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Hussain-Abidi, H., Chinn, C., Yoon, S., Cottone, A., Noushad, N., &amp; Richman, T. (2022). Apt Epistemic Practices in a High School Science Classroom: A Contrastive Case Study. <em>Proceedings of ICLS 2022</em>. Hiroshima, Japan. <a href="https://dx.doi.org/10.22318/icls2022.751" target="_blank" rel="noopener">https://dx.doi.org/10.22318/icls2022.751</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Richman, T., Yoon, S., Miller, K., &amp; Marei, A. (2022). Using social media to extend online professional development: Investigating teachers' fulfillment of personal interest and self-efficacy on WhatsApp. <em>Proceedings of CSCL 2022</em>. Hiroshima, Japan. <a href="https://doi.dx.org/10.22318/cscl2022.43" target="_blank" rel="noopener">https://doi.dx.org/10.22318/cscl2022.43</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Miller, K., Yoon, S. A., &amp; Shim, J. (2022). Surfacing collective pedagogical content knowledge for data literacy: An exploratory study with high school science teachers. <em>Proceedings of ICLS 2022</em>. Hiroshima, Japan. <a href="https://dx.doi.org/10.22318/icls2022.1037" target="_blank" rel="noopener">https://dx.doi.org/10.22318/icls2022.1037</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Noushad, N. F., Shim, J., &amp; Yoon, S. (2022). Navigating the conceptual and critical demands of data literacy in high school space using firsthand data. <em>Proceedings of ICLS 2022</em>. Hiroshima, Japan. <a href="https://dx.doi.org/10.22318/icls2022.195" target="_blank" rel="noopener">https://dx.doi.org/10.22318/icls2022.195</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Shim, J., Noushad, N. F., &amp; Yoon, S. (2022). Exploring pedagogical strategies for promoting student epistemic agency through the transfer of cognitive authority in an online science class. <em>Proceedings of CSCL 2022</em>. Hiroshima, Japan. <a href="https://doi.dx.org/10.22318/cscl2022.51" target="_blank" rel="noopener">https://doi.dx.org/10.22318/cscl2022.51</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+      </div>
+
+      <!-- ===== 2021 ===== -->
+      <div class="pub-block" data-year="2021">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2021</span>
+          <span class="pub-year-count">7 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+
+        <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Diwadkar A.R., Yoon, S.A., Shim, J., Gonzalez, M., Urbanowicz, R., &amp; Himes, B.E. (2021). Integrating biomedical informatics training into existing high school curricula. <em>AMIA Joint Summits on Translational Science</em>, <em>2021</em>, 190–199. <a href="https://pubmed.ncbi.nlm.nih.gov/34457133/" target="_blank" rel="noopener">https://pubmed.ncbi.nlm.nih.gov/34457133/</a></div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Enyedy, N., &amp; Yoon, S. (2021). Immersive environments: Learning in augmented + virtual reality. Chapter 21. In U. Cress, C. Rose, A.F. Wise and J. Oshima, (Eds.) <em>The International Handbook of Computer Supported Collaborative Learning</em> (pp. 389–406). Switzerland: Springer Nature.</div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Fick, S. J., Hmelo-Silver, C. E., Barth-Cohen, L., Yoon, S., &amp; Baek, J. (2021). Systems and system models. In Nordine, J. &amp; Lee, O. (Eds.), <em>Crosscutting Concepts: Strengthening Science and Engineering Learning</em> (pp. 135–163). Arlington, VA: NSTA Press.</div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Noushad, N., Shim, J., Yoon, S., &amp; Cottone, A. (2021). Are community relevant PBL supports enough to promote epistemic agency? Exploring variation in epistemic pedagogical practices in science classrooms. <em>Annual Conference of the International Society of the Learning Sciences.</em> <span style="font-size:11.5px;background:rgba(232,145,62,.1);color:var(--amber);padding:2px 8px;border-radius:10px;font-family:var(--font-display);font-weight:500;">Nominated for best student paper</span> <a href="https://repository.isls.org/handle/1/7468" target="_blank" rel="noopener">https://repository.isls.org/handle/1/7468</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Richman, T., Yoon, S. A., Marei, A., &amp; Miller, K. (2021, June 7–11). Analyzing Peer Interaction as Asynchronous Online Professional Development Scales Up to Include More Teachers [Poster session]. <em>International Society of the Learning Sciences 2021 Conference.</em></div><div class="pub-badges"><span class="tag">Conference Poster</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Miller, K., Yoon, S., Cottone, A., &amp; Shim, J. (June 2021). Integrating data literacy into secondary school science: An exploratory study of a pilot professional development. Short paper at <em>ISLS 2021</em>, Bochum, Germany (virtual). <a href="https://repository.isls.org/handle/1/7582" target="_blank" rel="noopener">https://repository.isls.org/handle/1/7582</a></div><div class="pub-badges"><span class="tag">Conference Paper</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Shim, J., Yoon, S., Cottone, A., &amp; Miller, K. (2021). Two exploratory case studies for teachers' adaptive expertise in teaching Bioinformatics in high school science classroom. Poster at <em>International Society of the Learning Sciences.</em> <a href="https://repository.isls.org/handle/1/7376" target="_blank" rel="noopener">https://repository.isls.org/handle/1/7376</a></div><div class="pub-badges"><span class="tag">Conference Poster</span></div></div></div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo"><span class="logo-node"></span>CRADLE Lab</div>
+      <p class="footer-desc">Complex Systems Research and Design of Learning Environments · University of Pennsylvania, Graduate School of Education</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <p><a href="../index.html">About</a><br><a href="projects.html">Projects</a><br><a href="team.html">Our Team</a><br><a href="publications.html">Publications</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>3700 Walnut Street<br>Philadelphia, PA 19104<br><a href="mailto:yoonsa@upenn.edu">yoonsa@upenn.edu</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">Copyright © 2026 CRADLE Lab · Penn Graduate School of Education</div>
+</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
