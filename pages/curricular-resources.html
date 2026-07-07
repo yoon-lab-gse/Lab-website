@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Curricular Resources — SCOPE Learning Lab</title>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <style>
+    /* ---- INTRO ---- */
+    .cr-intro { max-width:720px; }
+    .cr-intro p { font-size:18px; color:var(--text); line-height:1.8; margin-bottom:16px; }
+    .cr-intro a { color:var(--cyan); font-weight:500; }
+
+    /* ---- UNIT CARDS ---- */
+    .units-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:8px; }
+    .unit-card {
+      background:var(--panel); border:1px solid var(--border);
+      border-radius:var(--radius-lg); overflow:hidden;
+      transition:border-color .2s, box-shadow .2s, transform .2s;
+      cursor:pointer; display:flex; flex-direction:column;
+    }
+    .unit-card:hover { border-color:var(--border-mid); box-shadow:var(--glow); transform:translateY(-3px); }
+    .unit-card.disabled { cursor:default; opacity:.7; }
+    .unit-card.disabled:hover { transform:none; box-shadow:none; border-color:var(--border); }
+    .unit-banner {
+      background:linear-gradient(135deg, #14304d 0%, #1a5ea8 100%);
+      padding:28px 26px; color:#fff; position:relative; overflow:hidden;
+    }
+    .unit-banner::after {
+      content:''; position:absolute; right:-20px; top:-20px;
+      width:120px; height:120px; border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%);
+    }
+    .unit-banner h3 { font-family:var(--font-display); font-size:21px; font-weight:600; color:#fff; margin-bottom:6px; }
+    .unit-banner .unit-meta { font-size:13px; color:rgba(255,255,255,0.82); }
+    .unit-body { padding:22px 26px 24px; flex:1; display:flex; flex-direction:column; }
+    .unit-anchor { font-size:13px; color:var(--text-muted); margin-bottom:14px; }
+    .unit-anchor strong { color:var(--text-bright); font-weight:500; }
+    .unit-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:18px; }
+    .unit-cta {
+      margin-top:auto; font-family:var(--font-display); font-size:14px; font-weight:500;
+      color:var(--cyan); display:inline-flex; align-items:center; gap:6px;
+    }
+    .unit-soon { font-family:var(--font-display); font-size:13px; color:var(--text-muted); margin-top:auto; }
+
+    /* ================= MODAL ================= */
+    .modal-overlay {
+      position:fixed; inset:0; z-index:1000;
+      background:rgba(10,25,45,0.6); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+      display:none; align-items:flex-start; justify-content:center;
+      padding:40px 20px; overflow-y:auto;
+    }
+    .modal-overlay.open { display:flex; }
+    .modal {
+      background:#fff; border-radius:var(--radius-lg);
+      max-width:1180px; width:100%; margin:auto;
+      box-shadow:0 20px 60px rgba(0,0,0,0.3);
+      position:relative; animation:modalIn .25s ease;
+    }
+    @keyframes modalIn { from{opacity:0; transform:translateY(20px) scale(.98);} to{opacity:1; transform:none;} }
+    .modal-close {
+      position:sticky; top:0; float:right; margin:16px 16px 0 0;
+      width:38px; height:38px; border-radius:50%; border:none;
+      background:#14304d; color:#fff; font-size:20px; cursor:pointer; z-index:5;
+      display:flex; align-items:center; justify-content:center;
+      transition:background .15s;
+    }
+    .modal-close:hover { background:#1a5ea8; }
+    .modal-inner { padding:36px 44px 48px; }
+
+    /* Unit title bar in modal */
+    .mu-title { display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; padding-bottom:20px; margin-bottom:0; }
+    .mu-title h2 { font-family:var(--font-display); font-size:34px; font-weight:700; color:#14304d; letter-spacing:-0.02em; margin:0; }
+    .mu-title .mu-sub { font-family:var(--font-display); font-size:16px; color:var(--text-muted); }
+
+    /* Modal tab navigation */
+    .mu-tabs {
+      display:flex; gap:4px; border-bottom:2px solid var(--border);
+      margin-bottom:30px; position:sticky; top:0; background:#fff; z-index:3;
+      padding-top:4px;
+    }
+    .mu-tab {
+      font-family:var(--font-display); font-size:15px; font-weight:500;
+      color:var(--text-muted); background:none; border:none; cursor:pointer;
+      padding:12px 22px; border-bottom:3px solid transparent; margin-bottom:-2px;
+      transition:color .15s, border-color .15s; display:flex; align-items:center; gap:8px;
+    }
+    .mu-tab:hover { color:#14304d; }
+    .mu-tab.active { color:#1a5ea8; border-bottom-color:#1a5ea8; }
+    .mu-tab .tab-num {
+      font-size:11px; font-weight:600; width:20px; height:20px; border-radius:50%;
+      background:var(--panel-light); color:var(--text-muted);
+      display:inline-flex; align-items:center; justify-content:center;
+      transition:background .15s, color .15s;
+    }
+    .mu-tab.active .tab-num { background:#1a5ea8; color:#fff; }
+    .mu-panel { display:none; animation:tabIn .25s ease; }
+    .mu-panel.active { display:block; }
+    @keyframes tabIn { from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }
+    @media(max-width:600px){
+      .mu-tabs { gap:0; }
+      .mu-tab { padding:10px 12px; font-size:13px; }
+      .mu-tab .tab-label-full { display:none; }
+    }
+
+    /* Section blocks */
+    .mu-block { margin-bottom:32px; }
+    .mu-bar {
+      background:#14304d; color:#fff; font-family:var(--font-display);
+      font-size:18px; font-weight:600; padding:12px 20px;
+      border-radius:8px 8px 0 0; text-align:center;
+    }
+    .mu-bar.teal { background:#2c6da3; }
+    .mu-content {
+      border:1px solid var(--border); border-top:none;
+      border-radius:0 0 8px 8px; padding:22px 24px;
+      background:var(--panel);
+    }
+    .mu-content p { font-size:15px; color:var(--text); line-height:1.7; }
+
+    /* Overview + IEF two-column */
+    .mu-overview-grid { display:grid; grid-template-columns:1.5fr 1fr; gap:20px; }
+    @media(max-width:780px){ .mu-overview-grid { grid-template-columns:1fr; } }
+
+    /* IEF list */
+    .ief-item { display:flex; gap:12px; margin-bottom:18px; }
+    .ief-item:last-child { margin-bottom:0; }
+    .ief-icon { font-size:22px; flex-shrink:0; line-height:1.3; }
+    .ief-text h5 { font-family:var(--font-display); font-size:14px; font-weight:600; color:var(--text-bright); margin-bottom:3px; }
+    .ief-text p { font-size:13px; color:var(--text-muted); line-height:1.6; }
+    .ief-text .ief-note { font-style:italic; font-size:12.5px; color:var(--text-dim); margin-top:4px; }
+
+    /* NGSS grid */
+    .ngss-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:24px; }
+    @media(max-width:780px){ .ngss-grid { grid-template-columns:1fr; } }
+    .ngss-col h4 { font-family:var(--font-display); font-size:16px; font-weight:600; color:#1a5ea8; margin-bottom:12px; }
+    .lo-group { margin-bottom:16px; }
+    .lo-group strong { display:block; font-size:13.5px; color:var(--text-bright); margin-bottom:4px; }
+    .lo-group ol { margin:0 0 0 18px; font-size:13.5px; color:var(--text); line-height:1.6; }
+    .dci-row { margin-bottom:14px; padding-bottom:14px; border-bottom:1px solid var(--border); }
+    .dci-row:last-child { border-bottom:none; }
+    .dci-code { font-family:var(--font-display); font-size:12px; font-weight:600; color:#14304d; background:var(--panel-light); padding:2px 8px; border-radius:4px; display:inline-block; margin-bottom:5px; }
+    .dci-text { font-size:13px; color:var(--text); line-height:1.55; }
+    .dci-text b { color:#1a5ea8; font-weight:600; }
+    .ccc-list { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+    .ccc-chip { font-family:var(--font-display); font-size:12px; padding:4px 12px; border-radius:16px; background:rgba(201,122,30,0.1); color:#a8650f; border:1px solid rgba(201,122,30,0.22); }
+
+    /* ---- LESSON CARDS (PDF format) ---- */
+    .lessons-head { font-family:var(--font-display); font-size:22px; font-weight:700; color:#14304d; margin:8px 0 6px; }
+    .lessons-sub { font-size:14px; color:var(--text-muted); margin-bottom:24px; }
+    .lesson-card {
+      border:1px solid var(--border); border-radius:var(--radius-lg);
+      overflow:hidden; margin-bottom:22px; background:#fff;
+    }
+    .lesson-title-bar {
+      font-family:var(--font-display); font-size:20px; font-weight:700; color:#14304d;
+      padding:18px 22px 14px;
+    }
+    .lesson-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      grid-template-rows:auto auto;
+      gap:10px; padding:0 14px 14px;
+    }
+    .lp { border-radius:8px; overflow:hidden; border:1px solid var(--border); display:flex; flex-direction:column; }
+    .lp-head { font-family:var(--font-display); font-size:14px; font-weight:600; color:#fff; padding:10px 14px; text-align:center; }
+    .lp-head.dark { background:#14304d; }
+    .lp-head.teal { background:#2c6da3; }
+    .lp-body { padding:14px 16px; background:var(--panel); flex:1; }
+    .lp-overview { grid-column:1; grid-row:1 / 3; }
+    .lp-takeaways { grid-column:2; grid-row:1; }
+    .lp-whatwedo { grid-column:3; grid-row:1; }
+    .lp-resources { grid-column:2 / 4; grid-row:2; }
+    @media(max-width:780px){
+      .lesson-grid { grid-template-columns:1fr; grid-template-rows:none; }
+      .lp-overview,.lp-takeaways,.lp-whatwedo,.lp-resources { grid-column:1; grid-row:auto; }
+    }
+    .lp-meta { font-size:13px; color:var(--text-bright); font-weight:500; margin-bottom:4px; }
+    .lp-slides { font-size:12.5px; color:var(--text-muted); margin-bottom:14px; }
+    .lp-ieflabel { font-family:var(--font-display); font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--cyan); margin-bottom:8px; }
+    .lp-ief { display:flex; gap:8px; margin-bottom:10px; font-size:12.5px; color:var(--text); line-height:1.5; }
+    .lp-ief .ic { font-size:15px; flex-shrink:0; }
+    .lp-list { list-style:none; margin:0; padding:0; }
+    .lp-list li { font-size:13px; color:var(--text); line-height:1.55; margin-bottom:9px; padding-left:16px; position:relative; }
+    .lp-list li::before { content:''; position:absolute; left:0; top:7px; width:6px; height:6px; border-radius:50%; background:var(--cyan); }
+    .lp-list li b { color:var(--text-bright); font-weight:600; }
+    .lp-list.hw li::before { background:var(--amber); }
+    .res-links { display:flex; flex-wrap:wrap; gap:10px 24px; }
+    .res-link { font-family:var(--font-display); font-size:13px; font-weight:500; color:var(--cyan); text-decoration:underline; }
+    .res-link.plain { color:var(--text-muted); text-decoration:none; }
+
+    /* Learning sequence (Unit Map tab) */
+    .seq { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:32px; align-items:stretch; }
+    .seq-step {
+      flex:1; min-width:130px; background:var(--panel); border:1px solid var(--border);
+      border-radius:8px; padding:14px 16px; position:relative;
+    }
+    .seq-step .seq-n {
+      font-family:var(--font-display); font-size:11px; font-weight:600;
+      color:#fff; background:#1a5ea8; width:22px; height:22px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; margin-bottom:8px;
+    }
+    .seq-step h5 { font-family:var(--font-display); font-size:13px; font-weight:600; color:#14304d; margin-bottom:3px; line-height:1.3; }
+    .seq-step .seq-time { font-size:11.5px; color:var(--text-muted); }
+    .seq-arrow { align-self:center; color:var(--border-mid); font-size:18px; }
+    @media(max-width:780px){ .seq-arrow { display:none; } .seq-step { min-width:calc(50% - 6px); } }
+
+    /* Download buttons (Resources tab) */
+    .dl-section { margin-bottom:34px; }
+    .dl-section > h4 {
+      font-family:var(--font-display); font-size:16px; font-weight:600; color:#14304d;
+      margin-bottom:6px;
+    }
+    .dl-section > .dl-desc { font-size:13.5px; color:var(--text-muted); margin-bottom:16px; }
+    .dl-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+    .dl-btn {
+      display:flex; align-items:center; gap:14px;
+      background:var(--panel); border:1px solid var(--border); border-radius:10px;
+      padding:16px 18px; text-decoration:none; transition:border-color .18s, box-shadow .18s, transform .18s;
+    }
+    .dl-btn:hover { border-color:var(--border-mid); box-shadow:var(--glow); transform:translateY(-2px); text-decoration:none; }
+    .dl-icon {
+      width:42px; height:42px; border-radius:8px; flex-shrink:0;
+      background:#1a5ea8; color:#fff; display:flex; align-items:center; justify-content:center;
+    }
+    .dl-icon.gdoc { background:#2c6da3; }
+    .dl-icon.slides { background:#c97a1e; }
+    .dl-icon.sim { background:#2c8a5e; }
+    .dl-text { flex:1; min-width:0; }
+    .dl-text .dl-label { font-family:var(--font-display); font-size:14px; font-weight:600; color:#14304d; line-height:1.3; }
+    .dl-text .dl-type { font-size:12px; color:var(--text-muted); margin-top:2px; }
+    .dl-arrow { color:var(--cyan); font-size:18px; flex-shrink:0; }
+    .dl-soon {
+      font-family:var(--font-display); font-size:13px; color:var(--text-muted);
+      padding:14px 18px; background:var(--panel-light); border:1px dashed var(--border-mid);
+      border-radius:10px;
+    }
+
+    @media(max-width:600px){
+      .units-grid { grid-template-columns:1fr; }
+      .modal-inner { padding:24px 20px 32px; }
+      .mu-title h2 { font-size:26px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">SCOPE Learning Lab</a>
+    <div class="nav-links">
+      <a href="../index.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="team.html">Our Team</a>
+      <a href="publications.html">Publications</a>
+      <a href="curricular-resources.html" class="active">Curricular Resources</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <p class="section-label">DeTECT Project</p>
+    <h1>Curricular Resources</h1>
+    <p>Supporting teachers and students to explore how scientific knowledge is reliably produced. Evidence-based resources developed by teachers, for teachers.</p>
+  </div>
+</div>
+
+<main>
+  <section class="section">
+    <div class="container">
+      <div class="cr-intro">
+        <p>These resources were created through the <a href="projects.html">DeTECT project</a> — a partnership with Penn Graduate School of Education and Rutgers' Graduate School of Education, funded by the National Science Foundation (Grant #2009803). Click any unit below to view the full unit plan without leaving this page.</p>
+      </div>
+
+      <div class="sec-divider"><span>Units</span><div class="line"></div></div>
+
+      <div class="units-grid">
+
+        <!-- Epidemic Unit (clickable → modal) -->
+        <div class="unit-card" onclick="openUnit('epidemic')">
+          <div class="unit-banner">
+            <h3>The Epidemic Unit</h3>
+            <div class="unit-meta">High School Biology · 7 Lessons (~8 hrs)</div>
+          </div>
+          <div class="unit-body">
+            <div class="unit-anchor"><strong>Anchoring Phenomena:</strong> The spread of infectious diseases</div>
+            <div class="unit-tags">
+              <span class="tag nsf">NGSS-Aligned</span>
+              <span class="tag">Modified versions available</span>
+            </div>
+            <span class="unit-cta">View Unit Plan →</span>
+          </div>
+        </div>
+
+        <!-- Waterville Unit (placeholder) -->
+        <div class="unit-card disabled">
+          <div class="unit-banner" style="background:linear-gradient(135deg,#2c4a5e 0%,#4a7a8a 100%);">
+            <h3>The Waterville Unit</h3>
+            <div class="unit-meta">High School Biology</div>
+          </div>
+          <div class="unit-body">
+            <div class="unit-anchor">A complex systems curriculum unit developed through the DeTECT project.</div>
+            <span class="unit-soon">Full unit plan coming soon</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= EPIDEMIC UNIT MODAL ================= -->
+<div class="modal-overlay" id="unit-epidemic" role="dialog" aria-modal="true" aria-label="The Epidemic Unit plan">
+  <div class="modal">
+    <button class="modal-close" onclick="closeUnit()" aria-label="Close">&times;</button>
+    <div class="modal-inner">
+
+      <div class="mu-title">
+        <h2>The Epidemic Unit</h2>
+        <span class="mu-sub">High School Biology · 7 Lessons · Total Time = 480 minutes (8 hrs)</span>
+      </div>
+
+      <!-- TAB NAVIGATION -->
+      <div class="mu-tabs" role="tablist">
+        <button class="mu-tab active" data-mtab="overview" role="tab" aria-selected="true">
+          <span class="tab-num">1</span><span>Unit Overview</span>
+        </button>
+        <button class="mu-tab" data-mtab="map" role="tab" aria-selected="false">
+          <span class="tab-num">2</span><span>Unit Map</span>
+        </button>
+        <button class="mu-tab" data-mtab="resources" role="tab" aria-selected="false">
+          <span class="tab-num">3</span><span>Resources &amp; <span class="tab-label-full">Downloads</span></span>
+        </button>
+      </div>
+
+      <!-- ============ TAB 1: UNIT OVERVIEW ============ -->
+      <div class="mu-panel active" data-mpanel="overview">
+
+        <!-- Unit Overview + IEFs -->
+        <div class="mu-overview-grid">
+          <div class="mu-block" style="margin-bottom:32px;">
+            <div class="mu-bar">Unit Overview</div>
+            <div class="mu-content">
+              <p>Students will work together to recommend a mitigation strategy for a fictional town facing an epidemic. They will do this by using a computer-based simulation to design multiple experiments, collect data, engage in peer review, and construct and critique conclusions with the goal of seeking consensus. Students will grasp the methodological and social practices that scientists use to generate reliable knowledge. This unit can serve as a replacement or supplement to a Nature of Science unit.</p>
+            </div>
+          </div>
+          <div class="mu-block" style="margin-bottom:32px;">
+            <div class="mu-bar teal">Instructional Epistemic Frames</div>
+            <div class="mu-content">
+              <div class="ief-item">
+                <span class="ief-icon">🌎</span>
+                <div class="ief-text"><h5>Anchoring in Real-World Phenomena</h5><p>Teacher moves that focus classroom instruction on relevant, familiar, and meaningful real-world phenomena to students.</p></div>
+              </div>
+              <div class="ief-item">
+                <span class="ief-icon">💡</span>
+                <div class="ief-text"><h5>Eliciting Students' Ideas</h5><p>Teacher moves that prompt and incorporate students' ideas to shape classroom experiences.</p></div>
+              </div>
+              <div class="ief-item">
+                <span class="ief-icon">🔍</span>
+                <div class="ief-text"><h5>Orienting to the Discipline</h5><p>Teacher moves that direct students to learn about how scientists and science, as a discipline, operate.</p></div>
+              </div>
+              <div class="ief-item">
+                <span class="ief-icon">🔬</span>
+                <div class="ief-text"><h5>Orienting to Epistemic Practices</h5><p>Teacher moves that engage students in learning about and applying scientific knowledge-building practices with the goal of understanding how scientific knowledge is constructed, evaluated, and improved.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alignment to NGSS -->
+        <div class="mu-block">
+          <div class="mu-bar">Alignment to NGSS</div>
+          <div class="mu-content">
+            <div class="ngss-grid">
+              <div class="ngss-col">
+                <h4>Learning Objectives</h4>
+                <div class="lo-group">
+                  <strong>Biology</strong>
+                  <ol>
+                    <li>Explore how disease is spread and what conditions in a population affect their spread.</li>
+                    <li>Understand how models are a tool scientists use to understand a phenomena and develop solutions.</li>
+                  </ol>
+                </div>
+                <div class="lo-group">
+                  <strong>Complex Systems</strong>
+                  <ol>
+                    <li>Explain how large scale patterns can be created (emerge) when individuals follow simple rules.</li>
+                    <li>Use the example of a town to explain how programmed individual behavior can impact the spread of disease even though the system level itself (the overall spread) is not programmed.</li>
+                  </ol>
+                </div>
+                <h4 style="margin-top:20px;">Cross-Cutting Concepts</h4>
+                <div class="ccc-list">
+                  <span class="ccc-chip">1 · Patterns</span>
+                  <span class="ccc-chip">2 · Cause and effect</span>
+                  <span class="ccc-chip">3 · Scale, proportion, and quantity</span>
+                  <span class="ccc-chip">4 · Systems and systems modeling</span>
+                  <span class="ccc-chip">7 · Stability and change</span>
+                </div>
+              </div>
+              <div class="ngss-col">
+                <h4>Disciplinary Core Ideas</h4>
+                <div class="dci-row">
+                  <span class="dci-code">LS2.C · Ecosystem Dynamics, Functioning, and Resilience</span>
+                  <div class="dci-text"><b>HS-LS2-6.</b> Evaluating claims, evidence, and reasoning that the complex interactions in ecosystems maintain relatively consistent numbers and types of organisms in stable conditions, but changing conditions may result in a new ecosystem.</div>
+                </div>
+                <div class="dci-row">
+                  <span class="dci-code">LS2.D · Social Interactions and Group Behavior</span>
+                  <div class="dci-text"><b>HS-LS2-8.</b> Evaluate evidence for the role of group behavior on individual and species' chances to survive and reproduce.</div>
+                </div>
+                <div class="dci-row">
+                  <span class="dci-code">ETS.1.B · Developing Possible Solutions</span>
+                  <div class="dci-text"><b>HS-ETS1-1.</b> Analyze a major global challenge to specify qualitative and quantitative criteria and constraints for solutions that account for societal needs and wants.</div>
+                </div>
+                <div class="dci-row">
+                  <span class="dci-code">ETS.1.C · Optimizing the Design Solution</span>
+                  <div class="dci-text"><b>HS-ETS1-4.</b> Use a computer simulation to model the impact of proposed solutions to a complex real-world problem with numerous criteria and constraints on interactions within and between systems relevant to the problem.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /tab overview -->
+
+      <!-- ============ TAB 2: UNIT MAP ============ -->
+      <div class="mu-panel" data-mpanel="map">
+        <div class="lessons-head">Learning Sequence</div>
+        <div class="lessons-sub">The unit progresses through 7 lessons, building from modeling fundamentals to communicating science in the public sphere.</div>
+
+        <!-- Visual progression -->
+        <div class="seq">
+          <div class="seq-step"><div class="seq-n">1</div><h5>Why Model</h5><div class="seq-time">~60 min</div></div>
+          <div class="seq-arrow">→</div>
+          <div class="seq-step"><div class="seq-n">2</div><h5>Reliable Strategies</h5><div class="seq-time">~60 min</div></div>
+          <div class="seq-arrow">→</div>
+          <div class="seq-step"><div class="seq-n">3</div><h5>The Epidemic Simulation</h5><div class="seq-time">~60 min</div></div>
+          <div class="seq-arrow">→</div>
+          <div class="seq-step"><div class="seq-n">4</div><h5>Planning an Experiment</h5><div class="seq-time">~120 min</div></div>
+          <div class="seq-arrow">→</div>
+          <div class="seq-step"><div class="seq-n">5</div><h5>Resolving Disagreement</h5><div class="seq-time">~60 min</div></div>
+          <div class="seq-arrow">→</div>
+          <div class="seq-step"><div class="seq-n">6</div><h5>Making Sense of Data</h5><div class="seq-time">~60 min</div></div>
+          <div class="seq-arrow">→</div>
+          <div class="seq-step"><div class="seq-n">7</div><h5>Connecting to the Public Sphere</h5><div class="seq-time">~60 min</div></div>
+        </div>
+
+        <div class="lessons-head">Lesson Details</div>
+        <div class="lessons-sub">A full guide to each lesson, with teaching resources linked in each card.</div>
+        <div id="lesson-container"><!-- lessons injected by JS --></div>
+      </div><!-- /tab map -->
+
+      <!-- ============ TAB 3: RESOURCES & DOWNLOADS ============ -->
+      <div class="mu-panel" data-mpanel="resources">
+        <div class="dl-section">
+          <h4>Original Lesson Plan</h4>
+          <p class="dl-desc">The complete Epidemic Unit slideshow covering all 7 lessons.</p>
+          <div class="dl-grid">
+            <a class="dl-btn" href="https://docs.google.com/presentation/d/1jo4Fm87GOxE93UdPpIaCYWj842AW3tVVD8pvEgMAOnw/copy?usp=sharing" target="_blank" rel="noopener">
+              <span class="dl-icon slides">▦</span>
+              <span class="dl-text"><span class="dl-label">Full Unit Slideshow</span><span class="dl-type">Google Slides · all 7 lessons</span></span>
+              <span class="dl-arrow">↗</span>
+            </a>
+            <a class="dl-btn" href="https://www.slnova.org/djwendel/projects/848057/" target="_blank" rel="noopener">
+              <span class="dl-icon sim">◈</span>
+              <span class="dl-text"><span class="dl-label">Epidemic Simulation</span><span class="dl-type">StarLogo Nova · interactive model</span></span>
+              <span class="dl-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="dl-section">
+          <h4>Lesson Reasoning &amp; Notes</h4>
+          <p class="dl-desc">Detailed reasoning and teaching notes for each lesson (PDF).</p>
+          <div class="dl-grid">
+            <a class="dl-btn" href="../assets/docs/lesson-1-reasoning-notes.pdf" target="_blank" rel="noopener">
+              <span class="dl-icon">📄</span><span class="dl-text"><span class="dl-label">Lesson 1 · Why Model</span><span class="dl-type">PDF</span></span><span class="dl-arrow">↓</span>
+            </a>
+            <a class="dl-btn" href="../assets/docs/lesson-2-reasoning-notes.pdf" target="_blank" rel="noopener">
+              <span class="dl-icon">📄</span><span class="dl-text"><span class="dl-label">Lesson 2 · Reliable Strategies</span><span class="dl-type">PDF</span></span><span class="dl-arrow">↓</span>
+            </a>
+            <a class="dl-btn" href="../assets/docs/lesson-3-reasoning-notes.pdf" target="_blank" rel="noopener">
+              <span class="dl-icon">📄</span><span class="dl-text"><span class="dl-label">Lesson 3 · The Epidemic Simulation</span><span class="dl-type">PDF</span></span><span class="dl-arrow">↓</span>
+            </a>
+            <a class="dl-btn" href="../assets/docs/lesson-4-reasoning-notes.pdf" target="_blank" rel="noopener">
+              <span class="dl-icon">📄</span><span class="dl-text"><span class="dl-label">Lesson 4 · Planning an Experiment</span><span class="dl-type">PDF</span></span><span class="dl-arrow">↓</span>
+            </a>
+            <a class="dl-btn" href="../assets/docs/lesson-5-reasoning-notes.pdf" target="_blank" rel="noopener">
+              <span class="dl-icon">📄</span><span class="dl-text"><span class="dl-label">Lesson 5 · Resolving Disagreement</span><span class="dl-type">PDF</span></span><span class="dl-arrow">↓</span>
+            </a>
+            <a class="dl-btn" href="../assets/docs/lesson-6-reasoning-notes.pdf" target="_blank" rel="noopener">
+              <span class="dl-icon">📄</span><span class="dl-text"><span class="dl-label">Lesson 6 · Making Sense of Data</span><span class="dl-type">PDF</span></span><span class="dl-arrow">↓</span>
+            </a>
+            <a class="dl-btn" href="../assets/docs/lesson-7-reasoning-notes.pdf" target="_blank" rel="noopener">
+              <span class="dl-icon">📄</span><span class="dl-text"><span class="dl-label">Lesson 7 · Connecting to the Public Sphere</span><span class="dl-type">PDF</span></span><span class="dl-arrow">↓</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="dl-section">
+          <h4>Student Handouts &amp; Supporting Materials</h4>
+          <p class="dl-desc">Documents students and teachers use throughout the unit.</p>
+          <div class="dl-grid">
+            <a class="dl-btn" href="https://docs.google.com/document/d/1biUX6Nukaq-TP_jFdrkwR3ukE-jqP5-7/edit" target="_blank" rel="noopener">
+              <span class="dl-icon gdoc">📝</span><span class="dl-text"><span class="dl-label">Student Experimentation Report</span><span class="dl-type">Google Doc · Lesson 4</span></span><span class="dl-arrow">↗</span>
+            </a>
+            <a class="dl-btn" href="https://docs.google.com/document/d/1gxmKdH3_vcvvcnZZTP0Izz9v07uIu38VsvxHBi0y0zY/edit?usp=sharing" target="_blank" rel="noopener">
+              <span class="dl-icon gdoc">📝</span><span class="dl-text"><span class="dl-label">Prompts for Students Stuck / Finishing Early</span><span class="dl-type">Google Doc · Lesson 4</span></span><span class="dl-arrow">↗</span>
+            </a>
+            <a class="dl-btn" href="https://docs.google.com/document/d/1XAKy0KY49tUJla3DIP4J9p5p1sWYfUmi6ULiJrXJLMI/edit?usp=sharing" target="_blank" rel="noopener">
+              <span class="dl-icon gdoc">📝</span><span class="dl-text"><span class="dl-label">Evidence #2 Transcript</span><span class="dl-type">Google Doc · Lesson 7</span></span><span class="dl-arrow">↗</span>
+            </a>
+            <a class="dl-btn" href="https://en.wikipedia.org/wiki/Friction_motor" target="_blank" rel="noopener">
+              <span class="dl-icon">🔗</span><span class="dl-text"><span class="dl-label">How a Pull-back Car Works</span><span class="dl-type">Reference · Lesson 1</span></span><span class="dl-arrow">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="dl-section">
+          <h4>Modified Lesson Plans</h4>
+          <p class="dl-desc">Versions of the Epidemic Unit adapted by teachers for their own classrooms, with tracked changes showing their exact additions and removals.</p>
+          <div class="dl-soon">Teacher-modified versions (including Lauren's Version and a Chemistry-focused adaptation) coming soon.</div>
+        </div>
+      </div><!-- /tab resources -->
+
+      <div style="margin-top:24px; padding:16px 20px; background:var(--panel-light); border-radius:8px; font-size:13px; color:var(--text-muted);">
+        A partnership with Penn Graduate School of Education and Rutgers' Graduate School of Education, funded by the National Science Foundation Grant #2009803.
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">SCOPE Learning Lab</div>
+      <p class="footer-desc">SCOPE Learning Lab · Socioscientific Complexity & Impact Education</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <p><a href="../index.html">About</a><br><a href="projects.html">Projects</a><br><a href="team.html">Our Team</a><br><a href="publications.html">Publications</a><br><a href="curricular-resources.html">Curricular Resources</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>3700 Walnut Street<br>Philadelphia, PA 19104<br><a href="mailto:cradlelab.penn.gse@gmail.com">cradlelab.penn.gse@gmail.com</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">Copyright © 2026 SCOPE Learning Lab</div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+<script>
+/* =========================================================
+   EPIDEMIC UNIT — lesson data
+   To edit a lesson, just change the text below. To add a
+   lesson, copy one {...} block and append it to the array.
+   ========================================================= */
+const epidemicLessons = [
+  {
+    title: "Lesson 1 — Why Model",
+    time: "One 60-minute period",
+    slides: "Slides 2–18",
+    iefs: [
+      {ic:"💡", t:"Students display prior knowledge on how models are used and model construction"},
+      {ic:"🔍", t:"Develop shared criteria for good models"},
+      {ic:"🔬", t:"Understand scientists have shared criteria for communicating scientific information, and rely on peer feedback to construct reliable claims"}
+    ],
+    takeaways: [
+      "Define a scientific model",
+      "Develop <b>shared criteria</b> for good models that can be used throughout the year",
+      "Utilize scientific discourse to communicate information"
+    ],
+    whatwedo: [
+      "Students are introduced to the concept of modeling through several example images <b>(10 minutes)</b>",
+      "Students work in groups to observe and experiment with a pullback car to develop a model that explains how it functions <b>(15 minutes)</b>",
+      "Students share out developed models and provide feedback to peers <b>(15 minutes)</b>",
+      "Class develops shared list of good model criteria <b>(15 minutes)</b>"
+    ],
+    hw: "Students utilize evidence to determine the most accurate model and rank evidence to begin thinking about criteria for good practices (Lesson 2)",
+    resources: [
+      {label:"Reasoning and Lesson Notes", url:"../assets/docs/lesson-1-reasoning-notes.pdf"},
+      {label:"Alternative Model-Making Lesson", url:"https://docs.google.com/presentation/d/1jo4Fm87GOxE93UdPpIaCYWj842AW3tVVD8pvEgMAOnw/copy?usp=sharing"},
+      {label:"Explanation of How a Pull-back Car Works", url:"https://en.wikipedia.org/wiki/Friction_motor"},
+      {label:"Homework Key", url:null},
+      {label:"Video Demonstration", url:null}
+    ]
+  },
+  {
+    title: "Lesson 2 — Reliable Strategies",
+    time: "One 60-minute period",
+    slides: "Slides 12–26",
+    iefs: [
+      {ic:"🌎", t:"Spread of infectious diseases"},
+      {ic:"💡", t:"Students display prior knowledge on good scientific practices"},
+      {ic:"🔍", t:"Develop shared criteria for good scientific practices grounded in students' prior knowledge"},
+      {ic:"🔬", t:"Understand scientists have shared criteria for scientific practices"}
+    ],
+    takeaways: [
+      "Develop shared criteria for good scientific practices that can be used throughout the year",
+      "Reflect on how criteria for good scientific practices may influence the criteria for good models",
+      "Connect student-generated criteria to scientist-generated criteria"
+    ],
+    whatwedo: [
+      "Students debate ranking of evidence from previous night's homework (about the spread of disease) <b>(30 min)</b>",
+      "Class develops an initial list of criteria for good scientific practices and reflects on how this list connects to the criteria for good models <b>(30 min)</b>"
+    ],
+    hw: null,
+    resources: [
+      {label:"Reasoning and Lesson Notes", url:"../assets/docs/lesson-2-reasoning-notes.pdf"},
+      {label:"Video Demonstration", url:null}
+    ]
+  },
+  {
+    title: "Lesson 3 — The Epidemic Simulation",
+    time: "One 60-minute period",
+    slides: "Slides 27–52",
+    iefs: [
+      {ic:"🌎", t:"Spread of infectious diseases"},
+      {ic:"💡", t:"Students share experiences with infectious diseases and their observations about the epidemic simulation"},
+      {ic:"🔍", t:"Students evaluate scientific practices based on their list of reliable practices developed in Lesson 2"}
+    ],
+    takeaways: [
+      "Students explore a model that can be used to understand the effect of mitigation factors on disease spread",
+      "Students assess experimental designs to ensure they adhere to agreed upon criteria for good practices"
+    ],
+    whatwedo: [
+      "Students reflect on what they would do if a new, unknown illness is spreading through the population (this can be related to COVID-19) <b>(15 min)</b>",
+      "Students explore the epidemic simulation to determine its capabilities and limitations <b>(25 min)</b>",
+      "Students assess previously designed experiments based on list of criteria for good scientific practices <b>(20 min)</b>"
+    ],
+    hw: null,
+    resources: [
+      {label:"Reasoning and Lesson Notes", url:"../assets/docs/lesson-3-reasoning-notes.pdf"},
+      {label:"Video Demonstration", url:null},
+      {label:"Simulation Link", url:"https://www.slnova.org/djwendel/projects/848057/"}
+    ]
+  },
+  {
+    title: "Lesson 4 — Planning an Experiment",
+    time: "Two 60-minute periods",
+    slides: "Slides 53–68",
+    iefs: [
+      {ic:"🌎", t:"Spread of infectious diseases"},
+      {ic:"💡", t:"Students develop experimental procedures and critique each other's designs"},
+      {ic:"🔍", t:"Students design an experiment that will be used to develop evidence-based claims"},
+      {ic:"🔬", t:"Students understand that scientists use critique to generate reliable experimental designs"}
+    ],
+    takeaways: [
+      "Students utilize the previously established criteria for good practices to design an experiment that will be later used to make evidence-based claims about real world phenomena",
+      "Class serves as a scientific community to provide feedback on one another's experimental designs"
+    ],
+    whatwedo: [
+      "Students work in their peer groups to come up with an experimental procedure for their mitigation factor <b>(30 min)</b>",
+      "Students present their designs to their peers for critique <b>(30 min)</b>",
+      "Students revise their designs and then move on to conducting the experiment and collecting data as they described <b>(40 min)</b>"
+    ],
+    hw: null,
+    resources: [
+      {label:"Reasoning and Lesson Notes", url:"../assets/docs/lesson-4-reasoning-notes.pdf"},
+      {label:"Prompts for students who are stuck/finish early", url:"https://docs.google.com/document/d/1gxmKdH3_vcvvcnZZTP0Izz9v07uIu38VsvxHBi0y0zY/edit?usp=sharing"},
+      {label:"Student Experimentation Report", url:"https://docs.google.com/document/d/1biUX6Nukaq-TP_jFdrkwR3ukE-jqP5-7/edit"},
+      {label:"Simulation Link", url:"https://www.slnova.org/djwendel/projects/848057/"}
+    ]
+  },
+  {
+    title: "Lesson 5 — Resolving Disagreement",
+    time: "One 60-minute period",
+    slides: "Slides 69–86",
+    iefs: [
+      {ic:"🌎", t:"Spread of infectious diseases"},
+      {ic:"💡", t:"Students discuss the causes of scientific disagreement, how scientists can resolve disagreements, and the value of trying to come to consensus in science"},
+      {ic:"🔍", t:"Students develop arguments with evidence-based reasons; align models with evidence; modify models to fit discrepant evidence; resolve differences by finding relevant differences in experimental methods"},
+      {ic:"🔬", t:"Students understand that scientists disagree and the disagreement yields richer understanding"}
+    ],
+    takeaways: [
+      "Review collected data to identify and explain disagreements",
+      "Discuss possible strategies for how to deal with discrepant data",
+      "Generate a conclusion that fits all the high-quality evidence using the strategies for resolving disagreement, as discussed in the lesson"
+    ],
+    whatwedo: [
+      "Class discusses why disagreement might occur in scientific community and how it can be addressed <b>(10 min)</b>",
+      "Students analyze sample disagreements related to the epidemic simulation and identify possible causes and conclusions <b>(20 min)</b>",
+      "Students analyze the collected data to arrive at a conclusion that fits all high-quality evidence <b>(30 min)</b>"
+    ],
+    hw: null,
+    resources: [
+      {label:"Reasoning and Lesson Notes", url:"../assets/docs/lesson-5-reasoning-notes.pdf"},
+      {label:"Video Demonstration", url:null}
+    ]
+  },
+  {
+    title: "Lesson 6 — Making Sense of Data",
+    time: "One 60-minute period",
+    slides: "Slides 87–94",
+    iefs: [
+      {ic:"🌎", t:"Spread of infectious diseases"},
+      {ic:"💡", t:"Students communicate their findings to the class"},
+      {ic:"🔍", t:"Students seek and use high-quality evidence to support claims"},
+      {ic:"🔬", t:"Students understand that scientists review and synthesize the findings of a large number of studies to make stronger conclusions"}
+    ],
+    takeaways: [
+      "Arriving at reliable, scientific conclusions requires scientists to communicate their evidence, resolve disagreement, and seek consensus",
+      "Synthesize data from multiple groups to develop a scientific solution to a social problem"
+    ],
+    whatwedo: [
+      "Each group will present their findings about the mitigation strategy they tested <b>(30 min)</b>",
+      "Students will have the opportunity to ask their peers questions",
+      "Students will synthesize information to conclude the best recommendation for the town <b>(30 min)</b>"
+    ],
+    hw: null,
+    resources: [
+      {label:"Reasoning and Lesson Notes", url:"../assets/docs/lesson-6-reasoning-notes.pdf"}
+    ]
+  },
+  {
+    title: "Lesson 7 — Connecting to the Public Sphere",
+    time: "One 60-minute period",
+    slides: "Slides 95–107",
+    iefs: [
+      {ic:"🌎", t:"Spread of infectious diseases"},
+      {ic:"💡", t:"Students rank evidence based on their understanding of good scientific practice"},
+      {ic:"🔍", t:"Students evaluate and interpret evidence consistently"},
+      {ic:"🔬", t:"Students understand that good scientific practices shape the way we engage with public education"}
+    ],
+    takeaways: [
+      "Students evaluate evidence to arrive at a conclusion rooted in high-quality evidence",
+      "Students transfer their scientific thinking utilized in the previous lessons to evaluate scientific information communicated in everyday contexts"
+    ],
+    whatwedo: [
+      "Students understand the factors that were considered when developing the epidemic simulation model (i.e., vaccine efficacy) <b>(20 min)</b>",
+      "Students evaluate and rank evidence about the swine flu vaccine <b>(20 min)</b>",
+      "Students draw a conclusion about the efficacy of the swine flu vaccine that is based in high-quality evidence <b>(20 min)</b>"
+    ],
+    hw: null,
+    resources: [
+      {label:"Reasoning and Lesson Notes", url:"../assets/docs/lesson-7-reasoning-notes.pdf"},
+      {label:"Evidence #2 Transcript", url:"https://docs.google.com/document/d/1XAKy0KY49tUJla3DIP4J9p5p1sWYfUmi6ULiJrXJLMI/edit?usp=sharing"}
+    ]
+  }
+];
+
+/* Render lesson cards */
+function renderLessons() {
+  const c = document.getElementById('lesson-container');
+  c.innerHTML = epidemicLessons.map(L => {
+    const iefRows = L.iefs.map(i => `<div class="lp-ief"><span class="ic">${i.ic}</span><span>${i.t}</span></div>`).join('');
+    const takeaways = L.takeaways.map(t => `<li>${t}</li>`).join('');
+    let whatwedo = L.whatwedo.map(w => `<li>${w}</li>`).join('');
+    if (L.hw) whatwedo += `<li style="margin-top:4px;"><b>HW:</b> ${L.hw}</li>`;
+    /* Resources: items with a url render as real links (open in new tab);
+       items with url:null render as muted placeholders until a link is added. */
+    const resources = L.resources.map(r =>
+      r.url
+        ? `<a class="res-link" href="${r.url}" target="_blank" rel="noopener">${r.label}</a>`
+        : `<span class="res-link plain">${r.label}</span>`
+    ).join('');
+    return `
+    <div class="lesson-card">
+      <div class="lesson-title-bar">${L.title}</div>
+      <div class="lesson-grid">
+        <div class="lp lp-overview">
+          <div class="lp-head dark">Overview of Lesson</div>
+          <div class="lp-body">
+            <div class="lp-meta">${L.time}</div>
+            <div class="lp-slides">${L.slides}</div>
+            <div class="lp-ieflabel">Instructional Epistemic Frames</div>
+            ${iefRows}
+          </div>
+        </div>
+        <div class="lp lp-takeaways">
+          <div class="lp-head dark">Key Takeaways</div>
+          <div class="lp-body"><ul class="lp-list">${takeaways}</ul></div>
+        </div>
+        <div class="lp lp-whatwedo">
+          <div class="lp-head teal">What We Do and Figure Out</div>
+          <div class="lp-body"><ul class="lp-list">${whatwedo}</ul></div>
+        </div>
+        <div class="lp lp-resources">
+          <div class="lp-head teal">Teaching Resources</div>
+          <div class="lp-body"><div class="res-links">${resources}</div></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* Modal controls */
+function openUnit(id) {
+  if (id === 'epidemic') renderLessons();
+  const modal = document.getElementById('unit-' + id);
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  // Always reset to first tab when opening
+  switchTab(modal, 'overview');
+  modal.querySelector('.modal').scrollTop = 0;
+}
+function closeUnit() {
+  document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
+  document.body.style.overflow = '';
+}
+/* Tab switching inside a modal */
+function switchTab(scope, target) {
+  scope.querySelectorAll('.mu-tab').forEach(t => {
+    const on = t.dataset.mtab === target;
+    t.classList.toggle('active', on);
+    t.setAttribute('aria-selected', on);
+  });
+  scope.querySelectorAll('.mu-panel').forEach(p => {
+    p.classList.toggle('active', p.dataset.mpanel === target);
+  });
+}
+document.querySelectorAll('.mu-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const modal = tab.closest('.modal-overlay');
+    switchTab(modal, tab.dataset.mtab);
+    // scroll modal body up so the new tab starts at the top
+    modal.querySelector('.modal').scrollTop = 0;
+    modal.scrollTop = 0;
+  });
+});
+/* Close on backdrop click + Esc */
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) closeUnit(); });
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeUnit(); });
+</script>
+</body>
+</html>

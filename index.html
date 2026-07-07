@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SCOPE Learning Lab</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <style>
+    /* ---- HERO ---- */
+    .hero {
+      position: relative; overflow: hidden;
+      padding: 128px 0 108px;
+      min-height: 560px;
+      display: flex; align-items: center;
+      border-bottom: 1px solid var(--border);
+      background:
+        radial-gradient(ellipse 60% 80% at 82% 50%, rgba(26,94,168,0.07) 0%, transparent 62%);
+    }
+    /* Network image background */
+    .hero-network {
+      position: absolute; right: -3%; top: 50%; transform: translateY(-50%);
+      width: 760px; max-width: 50vw; opacity: 0.97; pointer-events: none;
+    }
+
+    .hero .container { width: 100%; }
+    .hero-content { position: relative; z-index: 2; max-width: 560px; }
+    .hero-eyebrow {
+      font-family: var(--font-display); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan);
+      margin-bottom: 24px; display: flex; align-items: center; gap: 10px;
+    }
+    .hero-eyebrow::before { content:''; width: 22px; height:1px; background: var(--cyan); }
+
+    .hero h1 {
+      font-family: var(--font-display); font-size: 52px; font-weight: 700;
+      color: var(--text-bright); line-height: 1.1; letter-spacing: -0.03em;
+    }
+    .hero h1 .accent { color: var(--cyan); }
+    .hero-sub {
+      margin-top: 24px; font-size: 18px; font-weight: 400;
+      color: var(--text-muted); line-height: 1.75; max-width: 520px;
+    }
+    .hero-actions { margin-top: 36px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* ---- STATS ---- */
+    .stats-row {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-cell {
+      padding: 28px 32px; border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .stat-cell:last-child { border-right: none; }
+    .stat-cell::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(to right, var(--cyan-dim), transparent);
+    }
+    .stat-num {
+      font-family: var(--font-display); font-size: 34px; font-weight: 700;
+      color: var(--cyan); letter-spacing: -0.03em; line-height: 1;
+    }
+    .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 5px; line-height: 1.4; }
+
+    /* ---- ABOUT GRID ---- */
+    .about-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 64px; align-items: start; }
+    .about-text p { color: var(--text); line-height: 1.8; margin-bottom: 18px; font-size: 15.5px; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--text-bright); font-weight: 500; }
+
+    /* ---- RESEARCH AREAS ---- */
+    .areas-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .area-card {
+      display: block; text-decoration: none;
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 26px 24px 22px;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .area-card:hover { border-color: var(--cyan); box-shadow: var(--glow); transform: translateY(-3px); text-decoration:none; }
+    .area-card .dot { width:8px; height:8px; border-radius:50%; background: var(--cyan); box-shadow: 0 0 6px var(--cyan-glow); margin-bottom:14px; }
+    .area-card h3 { font-family: var(--font-display); font-size:16px; font-weight:600; color:var(--text-bright); margin-bottom:7px; }
+    .area-card p  { font-size:13.5px; color:var(--text-muted); line-height:1.65; }
+    .area-card .area-link { display:inline-block; margin-top:12px; font-family:var(--font-display); font-size:12px; font-weight:500; color:var(--cyan); }
+
+    /* ---- CONTACT ---- */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .contact-card {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 28px 30px;
+    }
+    .contact-card h3 { font-family: var(--font-display); font-size:13px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--cyan); margin-bottom:14px; }
+    .contact-card p  { font-size:14px; color:var(--text); line-height:1.9; }
+    .contact-card a  { color:var(--cyan); }
+
+    @media(max-width:900px){
+      .hero h1 { font-size:36px; }
+      .hero-network { display:none; }
+      .stats-row { grid-template-columns:repeat(2,1fr); }
+      .about-grid { grid-template-columns:1fr; }
+      .areas-grid { grid-template-columns:repeat(2,1fr); }
+      .contact-grid { grid-template-columns:1fr; }
+    }
+    @media(max-width:600px){
+      .areas-grid { grid-template-columns:1fr; }
+      .stats-row { grid-template-columns:repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      SCOPE Learning Lab
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">About</a>
+      <a href="pages/projects.html">Projects</a>
+      <a href="pages/team.html">Our Team</a>
+      <a href="pages/publications.html">Publications</a>
+      <a href="pages/curricular-resources.html">Curricular Resources</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Network visualization background -->
+  <img class="hero-network" src="assets/images/hero-network.png" alt="Diagram of the lab's seven research focus areas: Professional Development, Science & STEM Education, Epistemic Education, Adaptive Expertise, Informal STEM Learning, and Socioscientific Education, shown as connected nodes" />
+
+  <div class="container">
+    <div class="hero-content">
+      <p class="hero-eyebrow">SCOPE Learning Lab</p>
+      <h1>Socioscientific Complexity<br>&amp; <span class="accent">Impact Education</span></h1>
+      <p class="hero-sub">The SCOPE Learning Lab applies complex systems approaches to design learning environments, curricula, and professional development across formal and informal science education.</p>
+      <div class="hero-actions">
+        <a href="pages/projects.html" class="btn btn-primary">Explore Research →</a>
+        <a href="pages/publications.html" class="btn btn-outline">Publications</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-cell"><div class="stat-num">20+</div><div class="stat-label">Partner countries worldwide</div></div>
+  <div class="stat-cell"><div class="stat-num">NSF</div><div class="stat-label">Active research</div></div>
+  <div class="stat-cell"><div class="stat-num">1000s</div><div class="stat-label">Teachers &amp; students reached</div></div>
+  <div class="stat-cell"><div class="stat-num">K–12 STEM</div><div class="stat-label">&amp; informal learning</div></div>
+</div>
+
+<main>
+  <!-- ABOUT -->
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-label">About the Lab</p>
+          <h2>Who We Are</h2>
+          <p>The <strong>SCOPE Learning Lab</strong> (Socioscientific Complexity &amp; Impact Education) applies complex systems approaches for teaching in order to design learning environments and curricula for science classrooms, and professional development (PD) for science teachers across both formal and informal settings.</p>
+          <p>The lab was founded by <strong>Dr. Susan Yoon</strong>, and comprises a diverse team of researchers, instructional designers, and K–12 educators. We regularly design and implement new publicly available PD programs and welcome educators interested in participating in future programs.</p>
+          <p>We have partnered with teachers from more than <strong>20 different countries</strong>, and we have collaborated with researchers and scientists from MIT, Rutgers, the Philadelphia Zoo, and Children's Hospital of Philadelphia, among many more. Our team is continuously evolving, and we are always in search of new collaborators.</p>
+          <div class="mt-lg" style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="pages/team.html" class="btn btn-primary">Meet the Team →</a>
+        </div>
+        </div>
+        <div>
+          <div class="photo-placeholder" style="min-height:300px;">
+            <svg width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Lab photo coming soon</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH AREAS -->
+  <section class="section" style="background:rgba(26,94,168,0.04);">
+    <div class="container">
+      <p class="section-label">Areas of Expertise</p>
+      <h2>Research Focus</h2>
+      <p style="max-width:640px; color:var(--text-muted); margin:-4px 0 30px; font-size:15px;">Our work spans seven interconnected areas. Explore related publications for each.</p>
+      <div class="areas-grid">
+        <a class="area-card" href="pages/publications.html">
+          <div class="dot"></div><h3>Professional Development</h3>
+          <p>Innovative in-person and online PD programs that build adaptive expertise for science and STEM teachers.</p>
+          <span class="area-link">View publications →</span>
+        </a>
+        <a class="area-card" href="pages/publications.html">
+          <div class="dot" style="background:var(--amber);box-shadow:0 0 6px rgba(201,122,30,.4);"></div><h3>Science &amp; STEM Education</h3>
+          <p>Designing curricula and learning environments that deepen disciplinary understanding in science and STEM classrooms.</p>
+          <span class="area-link">View publications →</span>
+        </a>
+        <a class="area-card" href="pages/publications.html">
+          <div class="dot" style="background:var(--coral);box-shadow:0 0 6px rgba(184,58,42,.4);"></div><h3>Complex Systems</h3>
+          <p>Agent-based simulations and curricula that reveal emergent phenomena in biology and beyond.</p>
+          <span class="area-link">View publications →</span>
+        </a>
+        <a class="area-card" href="pages/publications.html">
+          <div class="dot"></div><h3>Informal STEM Learning</h3>
+          <p>Museums, augmented reality, and out-of-school experiences that make science visible in new ways.</p>
+          <span class="area-link">View publications →</span>
+        </a>
+        <a class="area-card" href="pages/publications.html">
+          <div class="dot" style="background:var(--amber);box-shadow:0 0 6px rgba(201,122,30,.4);"></div><h3>Adaptive Expertise</h3>
+          <p>Understanding how teachers flexibly apply and innovate on their knowledge in changing classroom contexts.</p>
+          <span class="area-link">View publications →</span>
+        </a>
+        <a class="area-card" href="pages/publications.html">
+          <div class="dot" style="background:var(--coral);box-shadow:0 0 6px rgba(184,58,42,.4);"></div><h3>Socioscientific Education</h3>
+          <p>Engaging students with real-world data and socioscientific issues to support informed civic action.</p>
+          <span class="area-link">View publications →</span>
+        </a>
+        <a class="area-card" href="pages/publications.html">
+          <div class="dot"></div><h3>Epistemic Education</h3>
+          <p>Supporting authentic engagement with how scientific knowledge is constructed, evaluated, and improved.</p>
+          <span class="area-link">View publications →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Get in Touch</p>
+      <h2>Contact Us</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Principal Investigator</h3>
+          <p><strong style="color:var(--text-bright);">Susan Yoon, PhD</strong><br>
+          GSE Presidential Professor<br>Associate Dean for Research and Faculty Affairs<br><br>
+          <a href="mailto:yoonsa@upenn.edu">yoonsa@upenn.edu</a><br>
+          <a href="https://orcid.org/0000-0002-8715-0233" target="_blank" rel="noopener">ORCiD: 0000-0002-8715-0233 →</a></p>
+        </div>
+        <div class="contact-card">
+          <h3>Lab Address</h3>
+          <p>Graduate School of Education<br>3700 Walnut Street<br>Philadelphia, PA 19104<br><br>
+          Questions about the SCOPE Learning Lab? Please feel free to get in touch.</p>
+          <div style="margin-top:16px;">
+            <a href="mailto:cradlelab.penn.gse@gmail.com" class="btn btn-outline" style="font-size:13px;">cradlelab.penn.gse@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">SCOPE Learning Lab</div>
+      <p class="footer-desc">SCOPE Learning Lab · Socioscientific Complexity & Impact Education</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <p><a href="index.html">About</a><br><a href="pages/projects.html">Projects</a><br><a href="pages/team.html">Our Team</a><br><a href="pages/publications.html">Publications</a><br><a href="pages/curricular-resources.html">Curricular Resources</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>3700 Walnut Street<br>Philadelphia, PA 19104<br><a href="mailto:yoonsa@upenn.edu">yoonsa@upenn.edu</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">Copyright © 2026 SCOPE Learning Lab</div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

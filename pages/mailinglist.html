@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mailing List — SCOPE Learning Lab</title>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <style>
+    .ml-wrap { max-width:520px; margin:88px auto; padding:0 32px; }
+    .ml-wrap h1 { font-family:var(--font-display); font-size:30px; font-weight:600; color:var(--text-bright); margin-bottom:12px; letter-spacing:-0.02em; }
+    .ml-wrap p  { color:var(--text-muted); font-size:15.5px; line-height:1.75; margin-bottom:32px; font-weight:300; }
+    .ml-form { display:flex; flex-direction:column; gap:16px; }
+    .ml-field label { display:block; font-family:var(--font-display); font-size:12px; font-weight:500; color:var(--text-muted); margin-bottom:6px; letter-spacing:.06em; text-transform:uppercase; }
+    .ml-field input {
+      width:100%; padding:11px 16px;
+      background:var(--panel); border:1px solid var(--border);
+      border-radius:var(--radius); font-family:var(--font); font-size:15px; color:var(--text-bright);
+      transition:border-color .15s, box-shadow .15s;
+    }
+    .ml-field input::placeholder { color:var(--text-dim); }
+    .ml-field input:focus { outline:none; border-color:var(--border-mid); box-shadow:0 0 0 3px var(--cyan-dim); }
+    .ml-submit {
+      background:var(--cyan); color:var(--deep); border:none;
+      padding:12px 24px; border-radius:var(--radius);
+      font-family:var(--font-display); font-size:14.5px; font-weight:500; cursor:pointer;
+      transition:background .15s, box-shadow .15s;
+      box-shadow:0 0 20px rgba(62,184,232,.2);
+    }
+    .ml-submit:hover { background:var(--node-white); box-shadow:0 0 30px rgba(62,184,232,.35); }
+    .ml-note { font-size:12px; color:var(--text-dim); text-align:center; }
+    .ml-note a { color:var(--cyan); }
+  </style>
+</head>
+<body>
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">SCOPE Learning Lab</a>
+    <div class="nav-links">
+      <a href="../index.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="team.html">Our Team</a>
+      <a href="publications.html">Publications</a>
+      <a href="curricular-resources.html">Curricular Resources</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+<main>
+  <div class="ml-wrap">
+    <p class="section-label" style="justify-content:flex-start;">Stay Connected</p>
+    <h1>Join the SCOPE Learning Lab Mailing List</h1>
+    <p>Be the first to find out about exciting new professional development opportunities for science teachers.</p>
+    <div class="ml-form">
+      <div class="ml-field"><label for="ml-name">Full Name</label><input type="text" id="ml-name" placeholder="Jane Smith"/></div>
+      <div class="ml-field"><label for="ml-email">Email Address</label><input type="email" id="ml-email" placeholder="jane@school.edu"/></div>
+      <div class="ml-field"><label for="ml-role">Role</label><input type="text" id="ml-role" placeholder="e.g. High School Science Teacher"/></div>
+      <button class="ml-submit" type="button" onclick="alert('Thank you! If you do not receive an email confirmation, please contact trichman@upenn.edu to be added manually.')">Sign Up →</button>
+      <p class="ml-note">If you do not receive a confirmation email, please contact <a href="mailto:trichman@upenn.edu">trichman@upenn.edu</a> to be added manually.</p>
+    </div>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><div class="footer-logo">SCOPE Learning Lab</div><p class="footer-desc">Socioscientific Complexity & Impact Education</p></div>
+    <div class="footer-col"><h4>Navigate</h4><p><a href="../index.html">About</a><br><a href="projects.html">Projects</a><br><a href="team.html">Our Team</a><br><a href="publications.html">Publications</a><br><a href="curricular-resources.html">Curricular Resources</a></p></div>
+    <div class="footer-col"><h4>Contact</h4><p>3700 Walnut Street<br>Philadelphia, PA 19104<br><a href="mailto:yoonsa@upenn.edu">yoonsa@upenn.edu</a></p></div>
+  </div>
+  <div class="footer-bottom">Copyright © 2026 SCOPE Learning Lab</div>
+</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

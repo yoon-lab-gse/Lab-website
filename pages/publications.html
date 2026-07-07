@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Publications — SCOPE Learning Lab</title>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <style>
+    .yr-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:44px; }
+    .yr-pill {
+      font-family:var(--font-display); font-size:12.5px; font-weight:400;
+      padding:6px 18px; border-radius:20px; cursor:pointer;
+      background:var(--panel); color:var(--text-muted); border:1px solid var(--border);
+      transition:all .15s;
+    }
+    .yr-pill:hover, .yr-pill.active {
+      background:var(--cyan-dim); color:var(--cyan); border-color:var(--border-mid);
+    }
+
+    .pub-block { margin-bottom:52px; }
+    .pub-year-head {
+      display:flex; align-items:center; gap:14px; margin-bottom:22px;
+    }
+    .pub-year-num {
+      font-family:var(--font-display); font-size:26px; font-weight:700;
+      color:var(--text-bright); letter-spacing:-0.03em;
+    }
+    .pub-year-count {
+      font-family:var(--font-display); font-size:11px; font-weight:500;
+      background:var(--cyan-dim); color:var(--cyan); border:1px solid rgba(62,184,232,.22);
+      padding:2px 10px; border-radius:20px; letter-spacing:.04em;
+    }
+    .pub-yr-line { flex:1; height:1px; background:linear-gradient(to right,var(--border-mid),transparent); }
+
+    .pub-entry {
+      display:flex; gap:14px; align-items:flex-start;
+      padding:15px 0; border-bottom:1px solid var(--border);
+    }
+    .pub-entry:last-child { border-bottom:none; }
+    .pub-node {
+      width:7px; height:7px; border-radius:50%; flex-shrink:0; margin-top:7px;
+      background:var(--cyan); box-shadow:0 0 5px var(--cyan-glow);
+    }
+    .pub-node.amber { background:var(--amber); box-shadow:0 0 5px rgba(232,145,62,.35); }
+    .pub-node.coral { background:var(--coral); box-shadow:0 0 5px rgba(217,79,61,.35); }
+    .pub-node.white { background:var(--node-white); box-shadow:none; }
+    .pub-txt { flex:1; }
+    .pub-cite { font-size:14px; color:var(--text); line-height:1.78; }
+    .pub-cite em     { font-style:italic; color:var(--text-bright); }
+    .pub-cite strong { font-weight:600; color:var(--text-bright); }
+    .pub-cite a      { color:var(--cyan); word-break:break-word; }
+    .pub-badges { margin-top:6px; display:flex; gap:6px; flex-wrap:wrap; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">SCOPE Learning Lab</a>
+    <div class="nav-links">
+      <a href="../index.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="team.html">Our Team</a>
+      <a href="publications.html" class="active">Publications</a>
+      <a href="curricular-resources.html">Curricular Resources</a>
+    </div>
+    <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="container">
+    <p class="section-label">Scholarly Work</p>
+    <h1>Publications</h1>
+    <p>Journal articles, conference papers, and book chapters from the SCOPE Learning Lab research group.</p>
+  </div>
+</div>
+
+<main>
+  <section class="section">
+    <div class="container">
+
+      <div class="yr-row">
+        <button class="yr-pill active" data-yr="all">All Years</button>
+        <button class="yr-pill" data-yr="2026">2026</button>
+        <button class="yr-pill" data-yr="2025">2025</button>
+        <button class="yr-pill" data-yr="2024">2024</button>
+        <button class="yr-pill" data-yr="2023">2023</button>
+        <button class="yr-pill" data-yr="2022">2022</button>
+        <button class="yr-pill" data-yr="2021">2021</button>
+        <button class="yr-pill" data-yr="2020">2020</button>
+        <button class="yr-pill" data-yr="2019">2019</button>
+        <button class="yr-pill" data-yr="2018">2018</button>
+        <button class="yr-pill" data-yr="2017">2017</button>
+        <button class="yr-pill" data-yr="2016earlier">2016 &amp; earlier</button>
+      </div>
+
+      <!-- ===== 2026 ===== -->
+      <div class="pub-block" data-year="2026">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2026</span>
+          <span class="pub-year-count">4 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Cottone, A. M., Zheng, B., Zhao, J., Yoon, S. A., Kaloustian, T., Li, H., &amp; Wells, R. G. (2026). Investigating systems complexity with the venus flytrap (<em>Dionaea muscipula</em>) using multiple models: Introducing high school students to approaches in mechanobiology. <em>Systems, 14</em>(3), 331. <a href="https://doi.org/10.3390/systems14030331" target="_blank" rel="noopener">https://doi.org/10.3390/systems14030331</a></div>
+            <div class="pub-badges"><span class="tag">Journal Article</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node amber"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yoon, S. A., Shim, J., Cottone, A. M., Miller, K., &amp; Noushad, N. (in press). Making the case to improve teachers' STEM-integrated content knowledge: An analysis of teachers' adaptive expertise and impacts on student classroom experiences. <em>International Journal of STEM Education.</em></div>
+            <div class="pub-badges"><span class="tag">Journal Article</span><span class="tag inpress">In Press</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node amber"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Aldemir, T., Yoon, S. A., Miller, K., &amp; Shim, J. (in press). Teachers as co-designers: Fostering equitable participation through relational trust. <em>AERA Open.</em></div>
+            <div class="pub-badges"><span class="tag">Journal Article</span><span class="tag inpress">In Press</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node amber"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Noushad, N., Shim, J., &amp; Yoon, S. A. (in press). Investigating epistemic opportunities: a contrastive case study of two high school teachers' instructional strategies to support student's agency. <em>Journal of Science Teacher Education.</em></div>
+            <div class="pub-badges"><span class="tag">Journal Article</span><span class="tag inpress">In Press</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 2025 ===== -->
+      <div class="pub-block" data-year="2025">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2025</span>
+          <span class="pub-year-count">4 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yoon, S.A., Miller, K.M., Richman, T., Noushad, N., Zhang, W., Hageman, G., Yueqiao, L., &amp; Cottone, A. (2025). Developing teachers' disciplinary knowledge in the K-12 STEM integration field: A review of a decade of educational research. <em>Review of Educational Research</em>, <em>95</em>(6), 1337–1378. <a href="https://doi.org/10.3102/00346543241289566" target="_blank" rel="noopener">https://doi.org/10.3102/00346543241289566</a></div>
+            <div class="pub-badges"><span class="tag">Journal Article</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yoon, S.A., Shim, J., Zhang, W., Leung, V., &amp; Nguyen, Z. (2025). Epistemic emotions and their triggering of further epistemic engagement in a socioscientific high school unit on bioinformatics and air quality. Symposium paper in the <em>Proceedings of the 19th International Conference of the Learning Sciences-ICLS 2025</em>. Helsinki, Finland. <a href="https://doi.org/10.22318/icls2025.355776" target="_blank" rel="noopener">https://doi.org/10.22318/icls2025.355776</a></div>
+            <div class="pub-badges"><span class="tag">Proceedings</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yang, Z., Yoon, S.A., Chinn, C., Hunkar, K., Hussain-Abidi, H., &amp; Noushad, N. (2025). Building student epistemic practices through curriculum design: An empirical study. Long paper in the <em>Proceedings of ICLS 2025</em>. Helsinki, Finland. <a href="https://doi.org/10.22318/icls2025.161813" target="_blank" rel="noopener">https://doi.org/10.22318/icls2025.161813</a></div>
+            <div class="pub-badges"><span class="tag">Proceedings</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Noushad, N.F., Yoon, S.A., Chinn, C., Yang, Z., LeBovidge, C., Hunkar, K., &amp; Hussain-Abidi, H. (2025). The making of competent outsiders: Using epistemic practices of science to enhance student's critical evaluation of misleading scientific explanations in classrooms. Short paper in the <em>Proceedings of ICLS 2025</em>. Helsinki, Finland. <a href="https://doi.org/10.22318/icls2025.913852" target="_blank" rel="noopener">https://doi.org/10.22318/icls2025.913852</a></div>
+            <div class="pub-badges"><span class="tag">Proceedings</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 2024 ===== -->
+      <div class="pub-block" data-year="2024">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2024</span>
+          <span class="pub-year-count">9 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Shim, J., &amp; Yoon, S.A. (2024). Improving STEM education through resource activation: A study of culturally relevant teaching for critical data literacy in a high school science classroom. <em>Journal of Research in Science, Mathematics and Technology Education, 7,</em> 1-26. <a href="https://doi.org/10.31756/jrsmte.311SI" target="_blank" rel="noopener">https://doi.org/10.31756/jrsmte.311SI</a></div>
+            <div class="pub-badges"><span class="tag">Journal Article</span><span class="tag award">Best Paper Award</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yoon, S.A., Chinn, C., Richman, T., Noushad, N., Hussain-Abidi, H., Hunkar, K., &amp; Yang, A. (2024). Instructional epistemic frames in professional development of high school biology teachers. Symposium paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.370767" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.370767</a></div>
+            <div class="pub-badges"><span class="tag">Proceedings</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yoon, S.A. (2024). Developing teachers' adaptive expertise for ambitious instruction and disciplinary learning. Symposium in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.370767" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.370767</a></div>
+            <div class="pub-badges"><span class="tag">Proceedings</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yoon, S.A., Shim, J., Leung, V.Y., &amp; Nguyen, Y. (2024). "OMG that's crazy!" Examining the role of high school biology students' epistemic emotions in data investigations of neighborhood air quality. Symposium paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.702524" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.702524</a></div>
+            <div class="pub-badges"><span class="tag">Proceedings</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Yang, Z., Yoon, S.A., Chinn, C., Cottone, A., Richman, T., Noushad, N., Hussain-Abidi, H., &amp; Hunkar, K. (2024). Examining teachers' implementation of scientific epistemic practices curricula through an adaptive expertise lens: A case study. Long paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.431352" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.431352</a></div>
+            <div class="pub-badges"><span class="tag">Proceedings</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Noushad, N., Yoon, S.A., Chinn, C., Yang, Z., Hussain-Abidi, H., &amp; Hunkar, H. (2024). "Scientists don't know the truth; they tell you what they know to be true!": Shaping high school students understanding of how scientists establish trustworthy claims using epistemic practices. Long paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.513395" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.513395</a></div>
+            <div class="pub-badges"><span class="tag">Proceedings</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Aldemir, T., Shim, J., &amp; Yoon, S.A. (2024). Teachers as co-thinkers and facilitators: Unpacking teacher-student dynamics in co-design partnerships. Symposium paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.752026" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.752026</a></div>
+            <div class="pub-badges"><span class="tag">Proceedings</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Aldemir, T., Shim, J., &amp; Yoon, S.A. (2024). Empowering voices: Promoting equitable participation in student-inclusive co-design research-practice partnerships. Long paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.589952" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.589952</a></div>
+            <div class="pub-badges"><span class="tag">Proceedings</span></div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-node coral"></div>
+          <div class="pub-txt">
+            <div class="pub-cite">Hussain-Abidi, H., Hunkar, H., Chinn, C., Yoon, S.A., Noushad, N., &amp; Yang, Z. (2024). Using Apt-AIR to guide the design and analysis of a socio-scientific unit. Symposium paper in the <em>Proceedings of ICLS 2024</em>. Buffalo, New York. <a href="https://doi.org/10.22318/icls2024.891203" target="_blank" rel="noopener">https://doi.org/10.22318/icls2024.891203</a></div>
+            <div class="pub-badges"><span class="tag">Proceedings</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== 2023 ===== -->
+      <div class="pub-block" data-year="2023">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2023</span>
+          <span class="pub-year-count">10 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+
+        <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S.A., Chinn, C., Noushad, N., Richman, T., Hussain-Abidi, H., Hunkar, K., Cottone, A., Katz, J., Mitkus, E., &amp; Wendel, D. (2023). Seven design principles for teaching complex socioscientific issues: the design of a complex systems agent-based disease epidemic model and the application of epistemic practices in high school biology. <em>Frontiers in Education 8</em>(1210153). <a href="https://doi.org/10.3389/feduc.2023.1210153" target="_blank" rel="noopener">https://doi.org/10.3389/feduc.2023.1210153</a></div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Chinn, C., Yoon, S.A., Hussain-Abidi, H., Hunkar, K., Noushad, N., &amp; Richman, T. (2023). Designing learning environments to promote good thinking in a post-truth world: An example from science education. <em>European Journal of Education</em>, <em>58</em>(3), 407–421. <a href="https://doi.org/10.1111/ejed.12573" target="_blank" rel="noopener">https://doi.org/10.1111/ejed.12573</a></div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Miller, K.M., &amp; Yoon, S.A. (2023). Teaching complexity in biology through agent-based simulations: The relationship between students' knowledge of complex systems and modeling. <em>Frontiers in Education</em>, <em>8</em>(1198307). <a href="https://doi.org/10.3389/feduc.2023.1198307" target="_blank" rel="noopener">https://doi.org/10.3389/feduc.2023.1198307</a></div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Cottone, A. M., Yoon, S.A., Shim, J., Coulter, B., &amp; Carman, S. (2023). Evaluating apt epistemic processes in support of data literacy in elementary school students. <em>Instructional Science</em>, <em>51</em>, 1–37. <a href="https://awspntest.apa.org/doi/10.1007/s11251-022-09610-8" target="_blank" rel="noopener">https://doi.org/10.1007/s11251-022-09610-8</a></div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. A., Shim, J., Cottone, A., Noushad N., Yoo, J., &amp; Miller, K. (2023). Professional development for STEM integration: Analyzing bioinformatics teaching through considerations of adaptive expertise and cognitive load. In A. Superfine, S. Goldman, and M. Ko (Eds), <em>Teacher Learning in Changing Contexts</em> (pp. 69–90). Routledge Press. <a href="https://doi.org/10.4324/9781003097112" target="_blank" rel="noopener">https://doi.org/10.4324/9781003097112</a></div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Shim, J., &amp; Yoon, S.A. (2023). Activating resources for incorporating culturally relevant teaching in STEM curricula. <em>Proceedings of ICLS 2023</em>. Montreal, Canada. <a href="https://doi.org/10.22318/icls2023.643529" target="_blank" rel="noopener">https://doi.org/10.22318/icls2023.643529</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Cottone, A., Yoon, S.A., Richman, T., Chinn, C., Hussain-Abidi, H., &amp; Noushad, N. (2023). Examining the effects of teacher instructional approaches on shifting students' experiences towards epistemic practices during scientific modeling. <em>Proceedings of ICLS 2023</em>. Montreal, Canada. <a href="https://doi.org/10.22318/icls2023.200377" target="_blank" rel="noopener">https://doi.org/10.22318/icls2023.200377</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Miller, K., &amp; Yoon, S.A. (2023). Supporting high school science teachers in developing pedagogical content knowledge for data literacy. <em>Proceedings of ICLS 2023</em>. Montreal, Canada. <a href="https://doi.org/10.22318/icls2023.694470" target="_blank" rel="noopener">https://doi.org/10.22318/icls2023.694470</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Aldemir, T., Yoon, S.A., Miller, K., &amp; Shim, J. (2023). Teachers as co-designers: Forming equitable participation through the lens of relational trust. <em>Proceedings of ICLS 2023</em>. Montreal, Canada. <a href="https://doi.org/10.22318/icls2023.875205" target="_blank" rel="noopener">https://doi.org/10.22318/icls2023.875205</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Hussain-Abidi, H., Hunkar, K., Chinn, C.A., Yoon, S.A., Cottone, A.C., Noushad, N.F., &amp; Richman, T. (2023). Analyzing teacher epistemic moves in science classrooms. <em>Proceedings of ICLS 2023</em>. Montreal, Canada. <a href="https://doi.org/10.22318/icls2023.977729" target="_blank" rel="noopener">https://doi.org/10.22318/icls2023.977729</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+      </div>
+
+      <!-- ===== 2022 ===== -->
+      <div class="pub-block" data-year="2022">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2022</span>
+          <span class="pub-year-count">10 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+
+        <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S.A. (2022). Designing complex systems curricula for high school biology: A decade of work with the BioGraph project. In Knipples, M.C. and Ben Zvi Assaraf, O. (Eds.) <em>Fostering Understanding of Complex Systems in Biology Education</em> (pp. 227–248). Routledge Press.</div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Housh, K., Hmelo-Silver, C., &amp; Yoon, S. (2022). Theoretical perspectives on complex systems in biology education. In Knipples, M.C. and Ben Zvi Assaraf, O. (Eds.) <em>Understanding Complexity in Biology Education</em>. Routledge Press.</div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Chinn, C., Cottone, A., Richman, T., Noushad, N., &amp; Hussain-Abidi, H. (2022). Forging pathways from computational complex systems models to current socioscientific issues through scientific epistemic practices. <em>Proceedings of CSCL 2022</em>. Hiroshima, Japan. <a href="https://dx.doi.org/10.22318/icls2022.1699" target="_blank" rel="noopener">https://dx.doi.org/10.22318/icls2022.1699</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Noushad, F.N., Cottone, A., Hussain-Abidi, H., Yoon, S., &amp; Chinn, C. (2022). Epistemic Practices that Advance Learning of Complex Systems [Structured Poster Presentation]. <em>Proceedings of CSCL 2022</em>. Hiroshima, Japan.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Chinn, C., &amp; Noushad, N. (2022). Frameworks and methodologies for epistemic growth in K-12 science classrooms to address post-truth discourse. <em>Proceedings of CSCL 2022</em>. Hiroshima, Japan. <a href="https://dx.doi.org/10.22318/icls2022.1683" target="_blank" rel="noopener">https://dx.doi.org/10.22318/icls2022.1683</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Hussain-Abidi, H., Chinn, C., Yoon, S., Cottone, A., Noushad, N., &amp; Richman, T. (2022). Apt Epistemic Practices in a High School Science Classroom: A Contrastive Case Study. <em>Proceedings of ICLS 2022</em>. Hiroshima, Japan. <a href="https://dx.doi.org/10.22318/icls2022.751" target="_blank" rel="noopener">https://dx.doi.org/10.22318/icls2022.751</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Richman, T., Yoon, S., Miller, K., &amp; Marei, A. (2022). Using social media to extend online professional development: Investigating teachers' fulfillment of personal interest and self-efficacy on WhatsApp. <em>Proceedings of CSCL 2022</em>. Hiroshima, Japan. <a href="https://doi.dx.org/10.22318/cscl2022.43" target="_blank" rel="noopener">https://doi.dx.org/10.22318/cscl2022.43</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Miller, K., Yoon, S. A., &amp; Shim, J. (2022). Surfacing collective pedagogical content knowledge for data literacy: An exploratory study with high school science teachers. <em>Proceedings of ICLS 2022</em>. Hiroshima, Japan. <a href="https://dx.doi.org/10.22318/icls2022.1037" target="_blank" rel="noopener">https://dx.doi.org/10.22318/icls2022.1037</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Noushad, N. F., Shim, J., &amp; Yoon, S. (2022). Navigating the conceptual and critical demands of data literacy in high school space using firsthand data. <em>Proceedings of ICLS 2022</em>. Hiroshima, Japan. <a href="https://dx.doi.org/10.22318/icls2022.195" target="_blank" rel="noopener">https://dx.doi.org/10.22318/icls2022.195</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Shim, J., Noushad, N. F., &amp; Yoon, S. (2022). Exploring pedagogical strategies for promoting student epistemic agency through the transfer of cognitive authority in an online science class. <em>Proceedings of CSCL 2022</em>. Hiroshima, Japan. <a href="https://doi.dx.org/10.22318/cscl2022.51" target="_blank" rel="noopener">https://doi.dx.org/10.22318/cscl2022.51</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+      </div>
+
+      <!-- ===== 2021 ===== -->
+      <div class="pub-block" data-year="2021">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2021</span>
+          <span class="pub-year-count">7 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+
+        <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Diwadkar A.R., Yoon, S.A., Shim, J., Gonzalez, M., Urbanowicz, R., &amp; Himes, B.E. (2021). Integrating biomedical informatics training into existing high school curricula. <em>AMIA Joint Summits on Translational Science</em>, <em>2021</em>, 190–199. <a href="https://pubmed.ncbi.nlm.nih.gov/34457133/" target="_blank" rel="noopener">https://pubmed.ncbi.nlm.nih.gov/34457133/</a></div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Enyedy, N., &amp; Yoon, S. (2021). Immersive environments: Learning in augmented + virtual reality. Chapter 21. In U. Cress, C. Rose, A.F. Wise and J. Oshima, (Eds.) <em>The International Handbook of Computer Supported Collaborative Learning</em> (pp. 389–406). Switzerland: Springer Nature.</div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Fick, S. J., Hmelo-Silver, C. E., Barth-Cohen, L., Yoon, S., &amp; Baek, J. (2021). Systems and system models. In Nordine, J. &amp; Lee, O. (Eds.), <em>Crosscutting Concepts: Strengthening Science and Engineering Learning</em> (pp. 135–163). Arlington, VA: NSTA Press.</div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Noushad, N., Shim, J., Yoon, S., &amp; Cottone, A. (2021). Are community relevant PBL supports enough to promote epistemic agency? Exploring variation in epistemic pedagogical practices in science classrooms. <em>Annual Conference of the International Society of the Learning Sciences.</em> <span style="font-size:11.5px;background:rgba(232,145,62,.1);color:var(--amber);padding:2px 8px;border-radius:10px;font-family:var(--font-display);font-weight:500;">Nominated for best student paper</span> <a href="https://repository.isls.org/handle/1/7468" target="_blank" rel="noopener">https://repository.isls.org/handle/1/7468</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Richman, T., Yoon, S. A., Marei, A., &amp; Miller, K. (2021, June 7–11). Analyzing Peer Interaction as Asynchronous Online Professional Development Scales Up to Include More Teachers [Poster session]. <em>International Society of the Learning Sciences 2021 Conference.</em></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Miller, K., Yoon, S., Cottone, A., &amp; Shim, J. (June 2021). Integrating data literacy into secondary school science: An exploratory study of a pilot professional development. Short paper at <em>ISLS 2021</em>, Bochum, Germany (virtual). <a href="https://repository.isls.org/handle/1/7582" target="_blank" rel="noopener">https://repository.isls.org/handle/1/7582</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+
+        <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Shim, J., Yoon, S., Cottone, A., &amp; Miller, K. (2021). Two exploratory case studies for teachers' adaptive expertise in teaching Bioinformatics in high school science classroom. Poster at <em>International Society of the Learning Sciences.</em> <a href="https://repository.isls.org/handle/1/7376" target="_blank" rel="noopener">https://repository.isls.org/handle/1/7376</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+      </div>
+
+      <div class="pub-block" data-year="2020">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2020</span>
+          <span class="pub-year-count">10 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. A., Miller, K., &amp; Richman, T. (2020). Comparative Study of High-Quality Professional Development for High School Biology in a Face-to-Face versus Online Delivery Mode. Educational Technology &amp; Society, 23(3), 68–80.</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. A., Miller, K., Richman, T., Wendel, D., Schoenfeld, I., Anderson, E., &amp; Shim, J. (2020). Encouraging collaboration and building community in online asynchronous professional development: Designing for social capital. International Journal of Computer-Supported Collaborative Learning, 15(3), 351–371.</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. A., Miller, K., Richman, T., Wendel, D., Schoenfeld, I., Anderson, E., Shim, J., &amp; Marei, A. (2020). A social capital design for delivering online asynchronous professional development in a MOOC course for science teachers. Information and the Learning Sciences. 1–16.</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Lasky D., &amp; Yoon, S. (2020). A creative classroom for everyone: An introduction to a small ‘c’ creativity framework. Thinking Skills and Creativity, 36, 1–9.</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Baker-Doyle, K., &amp; Yoon, S. (2020). The social side of teacher education: Implications of social network research for the design of professional development. International Journal of Educational Research, 101, 1–5.</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Cottone, A., &amp; Yoon, S. (2020). Improving the design of undergraduate biology courses toward the goal of retention: The case of real-world inquiry and active learning through metagenomics. Journal of Microbiology and Biology Education, 21(1), 1–10.</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Miller, K., Richman, T., Wendel, D., Schoenfeld, I., &amp; Anderson, E. (2020). Comparative study of high-quality professional development for high school biology in a face-to-face vs. online delivery mode. Paper in the proceedings of the International Conference for the Learning Sciences, Nashville, TN. <a href="https://icls2020.exordo.com/programme/presentation/186" target="_blank" rel="noopener">https://icls2020.exordo.com/programme/presentation/186</a> (Conference canceled)</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Reisman, A., Yoon, S., Anderson, E., Brown, T, Correnti, R., Ebby, C., &amp;…Fishman, B. (2020). Designing online experiences to support teacher learning and professional development across subject areas. Symposium in the proceedings of the International Conference for the Learning Sciences, Nashville, TN. <a href="https://icls2020.exordo.com/programme/presentation/3" target="_blank" rel="noopener">https://icls2020.exordo.com/programme/presentation/3</a> (Conference canceled)</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Matuk, C., Yoon, S., Polman, J., Amato, A., Barton, J., Bulalacao, N., &amp;…Zellner, M. (2020). Data literacy for social justice. Symposium in the proceedings of the International Conference for the Learning Sciences, Nashville, TN. <a href="https://icls2020.exordo.com/programme/presentation/85" target="_blank" rel="noopener">https://icls2020.exordo.com/programme/presentation/85</a> (Conference canceled)</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Cottone, A., Yoon, S., Shim, J., Coulter, B., &amp; Carman, S. (2020). Investigating the development of data literacy through apt epistemic performance with elementary school students. Poster in the proceedings of the International Conference for the Learning Sciences, Nashville, TN. (Conference canceled)</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+      </div>
+
+      <div class="pub-block" data-year="2019">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2019</span>
+          <span class="pub-year-count">10 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Evans, C., Anderson, E., Koehler, J., &amp; Miller, K. (2019). Validating a model for assessing science teacher’s adaptive expertise with computer-supported complex systems curricula and its relationship to student learning outcomes. Journal of Science Teacher Education, 30(8), 890–905.</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Shim, J., &amp; Noushad, N. (2019). Trade-offs in using mobile artifacts to promote action with socioscientific issues. TechTrends, 63(5), 602–610.</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Goh, S., Yang, Z. (2019). Toward a learning progression for understanding complex systems in science education. Complicity, 16(1), 1–19. (19 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Vogel, F., Jeong, H., Yoon, S., Haklev, S., Guillian, L.V., Abassi, N.G., &amp;…Hmelo-Silver, C. (2019). Understanding CSCL through the lens of research syntheses. In the proceedings of the International Conference of Computer Supported Collaborative Learning, Lyon, France.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Delgado, C., McKenna, T.J., Krajcik, J., Levites, L., &amp; Sussman, A. (2019). The integration of cross-cutting concepts in three-dimensional learning. In Fick, S.J., Nordine, J., &amp; McElhaney, K.W. (Eds.). Conference Proceedings of the Summit for Examining the Potential for Crosscutting Concepts to Support Three-Dimensional Science Learning. Washington, D.C.: University of Virginia. Retrieved from: <a href="http://curry.virginia.edu/CCC-Summit." target="_blank" rel="noopener">http://curry.virginia.edu/CCC-Summit.</a></div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon. S., Miller, K., Shim, J., Wendel, D., Schoenfeld, I., Anderson, E., et al. (2019). From face-to-face to online: Considerations for social capital design to scale science teacher access to high-quality PD. In the proceedings of the International Conference of Computer Supported Collaborative Learning, Lyon, France.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Shim, J., Yoon, S., &amp; Noushad, N. (2019). Using a resource activation lens to understand classroom enactments of computationally-based science curricula. In the proceedings of the International Conference of Computer Supported Collaborative Learning, Lyon, France.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Bressler, D., Yoon., S., Miller, K., Shim, J., Wendel, D., Schoenfeld, I., et al. (2019). Using a MOOC for online professional development: An analysis of newer and experienced teacher perceptions. In the proceedings of the International Conference of Computer Supported Collaborative Learning, Lyon, France.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Miller, K., Yoon, S., Shim, J., Wendel, D., Schoenfeld., Anderson, E., et al. (2019). Teacher perceptions on collaborative online professional development for in-service teachers on a MOOC platform. In the proceedings of the International Conference of Computer Supported Collaborative Learning, Lyon, France.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Karumbaiah, S., Shim, S., Dabholkar, S., Yoon, S., Ye, A., &amp; Chandy, B. (2019). Designing to improve in-service teacher learning in computational thinking using data practices. In the proceedings of the International Conference of Computer Supported Collaborative Learning, Lyon, France.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+      </div>
+
+      <div class="pub-block" data-year="2018">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2018</span>
+          <span class="pub-year-count">8 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+          <div class="pub-entry"><div class="pub-node white"></div><div class="pub-txt"><div class="pub-cite">Yoon, S.A., &amp; Baker-Doyle, K. (Eds.) (2018). Networked by design: Interventions for teachers to develop social capital. New York, NY: Routledge Press.</div><div class="pub-badges"><span class="tag">Book</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Anderson, E., Elinich, K., Park, M., &amp; Lin, J. (2018). How augmented reality, text-based, and collaborative scaffolds work synergistically to improve learning in a science museum. Research in Science and Technology Education, 3(36), 261–281. (20 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Goh, S., Park, M. (2018). Teaching and learning about complex systems in K–12 science education: A review of empirical studies 1995–2015. Review of Educational Research, 88(2), 285–325. (40 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. (2018). Complex systems and the Learning Sciences: Implications for learning, theory, and methodologies. In F. Fischer, C. Hmelo-Silver, S. Goldman and P. Reimann (Eds.) The International Handbook of the Learning Sciences (pp. 157–166). New York, NY: Routledge Press.</div><div class="pub-badges"><span class="tag">Handbook Chapter</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. (2018). Mechanisms that couple intentional network rewiring and teacher learning to develop teachers’ social capital for implementing computer-supported complex systems curricula. In S. Yoon &amp; K. Baker-Doyle (Eds.), Networked by design: Interventions for teachers to develop social capital (pp. 7-23). New York, NY: Routledge Press.</div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Anderson, C.W., Baker-Doyle, K., de Laat, M., del los Santos, E., Frank, K.A., et al. (2018). Networked by design: Interventions for teachers to develop social capital. Symposium in the proceedings of the International Conference of the Learning Sciences, London, England.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Shim, J., &amp; Noushad, N. (2018). Trade-offs in using mobile tools to promote action with socioscentific issues. In the proceedings of the International Conference of the Learning Sciences, London, England.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Park, M., Anderson, E. (2018). Identifying reflective and non-reflective group consensus strategies for evidence-based scientific argumentation. In the proceedings of the International Conference of the Learning Sciences, London, England.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+      </div>
+
+      <div class="pub-block" data-year="2017">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2017</span>
+          <span class="pub-year-count">8 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Koehler-Yom, J., &amp; Yang, Z. (2017). The effects of teachers’ social and human capital on urban science reform initiatives: Considerations for professional development. Teachers College Record, 119(4), 1–32. (32 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., &amp; Hmelo-Silver, C. (2017). What do learning scientists do? A survey of the ISLS membership Journal of the Learning Sciences, 26(2), 167–183. (18 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Anderson, E., Koehler-Yom, Evans, C., Park, M., J., Sheldon, J., Schoenfeld, I., Wendel, D., Scheintaub, H., &amp; Klopfer, E. (2017). Teaching about complex systems is no simple matter: Building effective professional development for computer-supported complex systems instruction. Instructional Science, 45(1), 99–121. (23 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Lin J., Anderson, E., &amp; Elinich, K. (2017). How augmented reality enables conceptual understanding of challenging science content in a science museum: A case of Bernoulli’s Principle. Journal of Educational Technology &amp; Society, 20(1), 156–168. (13 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., &amp; Van Aalst, J. (2017). A note from the incoming editors. Journal of the Learning Sciences, 26(1), 7–9. (3 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., &amp; Hmelo-Silver, C. (2017). Introduction to special issue: Models and tools for systems learning and instruction. Instructional Science, 45(1), 1–4. (4 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Park, M., Anderson, E., Yoon, S. (2017). Learning biology coherently through complex systems: A model supported with scientific practices and agent-based simulations. In the proceedings of the International Conference for Computer Supported Collaborative Learning, Philadelphia, PA, USA.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Noushad, N., Shim, J., Yoon, S. (2017). Integrating social problem solving with programming to enhance science agency among middle school students through the creation of mobile apps. In the proceedings of the International Conference for Computer Supported Collaborative Learning, Philadelphia, PA, USA.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+      </div>
+
+      <div class="pub-block" data-year="2016earlier">
+        <div class="pub-year-head">
+          <span class="pub-year-num">2016 &amp; earlier</span>
+          <span class="pub-year-count">60 publications</span>
+          <div class="pub-yr-line"></div>
+        </div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Klopfer, E., Anderson, E., Koehler-Yom, J., Sheldon, J., Schoenfeld, I., Wendel, D., Scheintaub, H., Oztok, M., Evans, C., &amp; Goh, S. (2016). Designing computer-supported complex systems curricula for the Next Generation Science Standards in high school science classrooms. Systems, 4(38), 1–18. <a href="http://www.mdpi.com/2079-8954/4/4/38/html" target="_blank" rel="noopener">http://www.mdpi.com/2079-8954/4/4/38/html</a> (18 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Elinich, K., Wang, J., Van Schooneveld, J., &amp; Anderson, E. (2016). Scaffolding informal learning in science museums: How much is too much? Virtual Issue: Building Capacity for Research at the Intersection of the Learning Sciences and Informal Science Education. Science Education. Retrieved from <a href="http://onlinelibrary.wiley.com/journal/10.1002/%28ISSN%291098-237X/homepage/custom_copy.htm" target="_blank" rel="noopener">http://onlinelibrary.wiley.com/journal/10.1002/%28ISSN%291098-237X/homepage/custom_copy.htm</a> (30 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Koehler-Yom, J., Anderson, E., Evans, C. (2016). Validating a model for assessing teacher’s adaptive expertise with computer supported complex systems curricula and its relationship to student learning outcomes. In the proceedings of the International Conference of the Learning Sciences, Singapore.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon S., &amp; Hmelo-Silver, C. (2016) What do learning scientists do: A survey of the ISLS membership. In the proceedings of the International Conference of the Learning Sciences, Singapore.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Anderson, E., Koehler-Yom, J., Sheldon, J., Schoenfeld, I., Wendel, D., Scheintaub, H., Klopfer, E., Oztok, M., &amp; Evans, C. (2015). Design features for computer-supported complex systems learning and teaching in high school science classrooms. Journal of Research in STEM Education, 1(1), 17–30. (14 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Koehler-Yom, J., Anderson, E., Lin, J., &amp; Klopfer, E. (2015). Using an adaptive expertise lens to understand the quality of teachers’ classroom implementation of computer-supported complex systems curricula in high school science. Research in Science and Technology Education, 33(2), 237–251. (15 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Koehler-Yom, J., Oztok, M., Anderson, E., Schoenfeld, I., Scheintaub, H., Wendel, D., Sheldon, J., Klopfer, E. (2015). Impacts on student understanding of scientific practices and crosscutting themes through an NGSS-designed computer-supported curriculum and instruction project. In the proceedings of the International Conference for Computer Supported Collaborative Learning, Gothenburg, Sweden.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Anderson, E., Koehler-Yom, J., Sheldon, J., Schoenfeld, I., Wendel, D., Scheintaub, H., Klopfer, E., Oztok, M., &amp; Evans, C. (2015). Design features for computer-supported complex systems learning and teaching in high school science classrooms. In the proceedings of the International Conference for Computer Supported Collaborative Learning, Gothenburg, Sweden.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., &amp; Wang, J., (2014). Making the invisible visible in science museums through augmented reality devices. Tech Trends, 58(1), 49–55. (7 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Wang, J., &amp; Elinich, K. (2014). Augmented reality and learning in science museums. In D. Sampson (Ed.), Digital systems for open Access to formal and informal learning (pp. 293–305) City: Springer.</div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Koehler, J., Wang, J., &amp; Anderson, E., Klopfer, E. (2014). Using an adaptive expertise lens to understand the quality of teachers’ classroom implementation of computer-supported reform curricula in high school science. In the proceedings of the International Conference for the Learning Sciences, Boulder, CO.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Wang, J., Anderson, E., Elinich, K. (2014). Using AR to scaffold learning about conceptually challenging science content in a science museum. In the proceedings of the International Conference for the Learning Sciences, Boulder, CO.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Wang, J., &amp; Yoon, S. (2014). Learning with multiple visualizations in the science museum. In the proceedings of the International Conference for the Learning Sciences, Boulder, CO.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Elinich, K., Wang, J., Van Schooneveld, J., &amp; Anderson, E. (2013). Scaffolding informal learning in science museums: How much is too much? Science Education, 97(6), 848–877. (30 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Wang, J., &amp; Yoon, S. (2013). Scaffolding visitors’ learning through labels. Journal of Museum Education, 38(3), 320–332. (12 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Quintana, C., Lyons, L., Perry, J., Osterweil, S., &amp; Lindgren, R. (2013). Promises and perils of using digital tools in informal science learning environments: Design considerations for learning. In the proceedings of the Computer Supported Collaborative Learning, Madison, Wisconsin.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Klopfer, E., Wang, J., Sheldon, J., Wendel, D., Schoenfeld, I., Scheintaub, H., &amp; Reider, D. (2013). Designing to improve biology understanding through complex systems in high school classrooms: No simple matter! In the proceedings of the Computer Supported Collaborative Learning, Madison, Wisconsin.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Elinich, K., Wang, J., Steinmeier, C., &amp; Tucker, S. (2012). Using Augmented Reality and Knowledge-Building Scaffolds to Improve Learning in a Science Museum. International Journal of Computer Supported Collaborative Learning, 7(4), 519–541. (23 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Elinich, K., Wang, J., Steinmeier, C., &amp; Van Schooneveld, J. (2012). Learning impacts of a digital augmentation in a science museum. Visitor Studies, 15(2), 157–170. (14 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon. S., &amp; Elinich, K. (2012). Augmented reality in the science museum: Lessons learned in scaffolding for conceptual and cognitive learning. Paper in the proceedings of the IADIS International Conference on Cognition and Exploratory Learning in Digital Age CELDA 2012. Madrid, Spain, October 19 – 21, 2012.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. (2012). Investigating Emergent Dynamics to Understand Interactions in Small Professional Development Groups. In the proceedings of the International Conference for the Learning Sciences, Sydney, Australia.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Goh, S., Yoon, S., Yang, Z., Wang, J., &amp; Klopfer, E. (2012). Investigating the relative difficulty of various complex systems ideas in biology. In the proceedings of the International Conference for the Learning Sciences, Sydney, Australia.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Wang, J., Yoon, S., Elinich, K., &amp; Van Schooneveld, J. (2012). Investigating the effects of varying labels as scaffolds for visitor learning. In the proceedings of the International Conference for the Learning Sciences, Sydney, Australia.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. A. (2011). Using social network graphs as visualization tools to influence peer selection decision-making strategies to access information about complex socioscientific issues. Journal of the Learning Sciences, 20(4), 549–588. (39 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Lasky, D., &amp; Yoon, S. (2011). Making space for the act of making: Creativity in the context of engineering design. Science Educator, 20(1), 34-43 (9 pages).</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Baker-Doyle, K., &amp; Yoon, S. (2011). In search of practitioner-based social capital: A social network analysis tool for understanding and facilitating teacher collaboration in a professional development program. Professional Development in Education, 37(1), 75–93 (18 pages).</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Baker-Doyle, K., &amp; Yoon, S. (2011). Using social network analysis to develop expertise transparency in teacher professional development programs. In A. Daly (Ed.), The ties of change: Social Network Theory and Application in Education (pp.115–126). Cambridge, MA: Harvard University Press.</div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Elinich, K., Wang, J., Steinmeier, C., &amp; Van Schooneveld, J. (2011). Fostering critical thinking in science museums through digital augmentations. In the proceedings of the annual conference of the International Conference on Computer Supported Collaborative Learning, Hong Kong, China.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Elinich, K., Steinmeier, C., Wang, J., &amp; Tucker, S. (2011). Learning science through knowledge-building and augmented reality in museums. In the proceedings of the annual conference of the International Conference on Computer Supported Collaborative Learning, Hong Kong, China.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Liu, L., &amp; Yoon, S. (2011). Using online mediation tools to mediate curriculum development as a collaborative process. In the proceedings of the annual conference of the International Conference on Computer Supported Collaborative Learning, Hong Kong, China.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Liu, L., &amp; Goh, S. (2010). Convergent adaptation in small groups: Understanding professional development activities through a complex systems lens. Journal of Technology and Teacher Education, 18(2), 319–344. (25 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., &amp; Liu, L. (2010). Complexity, robustness, and trade-offs in evaluating large scale STEM education programs. In the Proceedings of the International Conference for the Learning Sciences, Chicago, IL.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Goh, S., &amp; Yoon, S. (2010). Investigating teacher growth in the context of content innovation. In the Proceedings of the International Conference for the Learning Sciences, Chicago, IL.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Steinmeier, C., &amp; Yoon, S. (2010). Using social network analysis to understand online homeschool network interactions. In the Proceedings of the International Conference for the Learning Sciences.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Parker, C., Bertram, K., Yanowitz, K., Barnett, M., Yoon, S., &amp; Tandra-Wood, T. (2010). STEM teacher professional development—Lessons learned from NSF’s ITEST program. In the Proceedings of the Annual Conference of the Society for Information Technology &amp; Teacher Education, San Diego, CA.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Perna, L., Lundy-Wagner, V., Drezner, N., Gasman, M., Yoon, S., Bose, E., &amp; Gary, S. (2009). The contribution of HBCUs to the preparation of African American women for STEM careers: A case study. Research in Higher Education, 50(1), 1–23. (23 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Gasman, M., Perna, L., Yoon, S., Drezner, N., Lundy-Wagner, V., Bose, E., &amp; Gary, S. (2009). The path to graduate school in science and engineering for underrepresented students of color. In M. Howard-Hamilton, S. Johnson, and R. Winkle Wagner (Eds.), Standing on the outside looking in:  Underrepresented students’ experiences in advanced-degree programs. Sterling, VA: Stylus.</div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Liu, L., &amp; Goh, S. (2009). Exploring the process of convergent adaptation in technology-based science curriculum construction. In the Proceedings of the Computer Supported Collaborative Learning, Rhodes, Greece.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. (2008). Using memes and memetic processes to explain social and conceptual influences on student understanding about complex socio-scientific Issues. Journal of Research in Science Teaching, 45(8), 900–921. (21 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. (2008). An evolutionary approach to harnessing complex systems thinking in the science and technology classroom. International Journal of Science Education, 30(1), 1–32. (32 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. (2008). Fostering information-based strategies through visualization of networks. In the Proceedings of the International Conference for the Learning Sciences, Utrecht, Netherlands.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. (2008). Advancing a new perspective on decision-making about socio-scientific issues: The study of memes and memetic processes. In the Proceedings of the International Conference for the Learning Sciences, Utrecht, Netherlands.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. (2007). Exploring the potential of a handheld participatory simulation and social network application for revealing decision-making processes for information seeking amongst middle school students. In the Proceedings of the Computer Supported Collaborative Learning Annual Conference, Rutgers, NJ.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., &amp; Klopfer, E. (2006). Feedback (F) fueling adaptation (A) network growth (N) and self-organization (S): A complex systems design and evaluation approach to professional development. Journal of Science Education and Technology, 15(5–6), 353–366. (14 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Pedretti, E., Bencze, L., Hewitt, J., Perris, K., &amp; Van Oostveen, R. (2006). Improving elementary preservice science teachers’ self-efficacy beliefs through the use of cases and case-methods. Journal of Science Teacher Education, 17(2), 1–21. (21 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., &amp; Klopfer, E. (2006). Feedback and adaptation within a complex systems approach to designing for scalable and sustainable professional development. In the Proceedings of the International Conference for the Learning Sciences, Bloomington, IN.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Klopfer, E., &amp; Yoon, S. (2005). Developing games and simulations for today and tomorrow’s tech savvy youth. Tech Trends, 49(3), 33–41. (9 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Klopfer, E., Yoon, S., &amp; Perry, J. (2005). Using Palm technology in participatory simulations of complex systems: A new take on ubiquitous and accessible mobile computing. Journal of Science Education and Technology, 14(3), 285–298. (13 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Klopfer, E., Yoon, S., &amp; Um, T. (2005). Teaching complex dynamic systems to young students with StarLogo. Journal of Computers in Mathematics and Science Teaching, 24(2), 157–178. (21 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node coral"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. (2005). Motivating the unmotivated: Relevance and empowerment through a town hall debate (Account 7). In S. Alsop, L. Bencze, &amp; E. Pedretti (Eds.), Analysing exemplary science teaching: Theoretical lenses and a spectrum of possibilities for practice (pp. 53–62). Buckingham, UK: Open University Press.</div><div class="pub-badges"><span class="tag">Book Chapter</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., &amp; Klopfer, E. (2005). Social network influences in a complex systems design for professional development in educational technology use: Results of a first phase implementation. In the Proceedings of the 3rd Annual Hawaii International Conference on Education, Honolulu, HI.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., &amp; Woodruff, E. (2005). Exploring the influences of memes and memetic processes on decision making about scientific and technological issues. In the Proceedings of the 3rd Annual Hawaii International Conference on Education, Honolulu, HI.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Klopfer, E., Yoon, S., &amp; Rivas, L. (2004). Comparative analysis of Palm and wearable computers for participatory simulations. Journal of Computer Assisted Learning, 20, 347–359. (13 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Yoon, S., Klopfer, E., Richardson, G., &amp; Taylor, J. (2004). Insights into the complexity of designing for professional development networks in educational technologies: Tensions between structure and agency. In the Proceedings of the International Conference for the Learning Sciences, Santa Monica, CA.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Bencze, L., Hewitt, J., Pedretti, E., Yoon, S., Perris, K., &amp; Van Oostveen, R. (2003). Science-specialist student-teachers consider promoting technological design projects: Contributions of multi-media case methods. Research in Science Education, 33, 163–187. (24 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Hewitt, J., Bencze, L., Pedretti, E., Vaillaincourt, D., &amp; Yoon, S. (2003). New applications for multimedia cases: Promoting reflective practice in preservice education. Journal of Technology and Teacher Education, 11(4), 483–500. (17 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Andrews, G., Woodruff, E., MacKinnon, K. A., &amp; Yoon, S. (2003). A preliminary report on introducing “Thinking Tags” to kindergarten students through a dental health simulation. Journal of Computer Assisted Learning, 19(2), 209–219. (10 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">Woodruff, E., Klopfer, E., Yoon, S., &amp; Young, L. (2003). Platforms for participatory simulations: Generating discourse with wearable and handheld computers. In the Proceedings of the Computer Supported Collaborative Learning Annual Conference, Bergen, Norway.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node"></div><div class="pub-txt"><div class="pub-cite">Yoon, S. (2002). Children’s preconceptions of human-animal relationships: Dispositions towards a humane consciousness and implications for curriculum and instruction. The Canadian Journal of Science, Mathematics and Technology Education, 2(4), 449–466. (18 pages)</div><div class="pub-badges"><span class="tag">Journal Article</span></div></div></div>
+          <div class="pub-entry"><div class="pub-node amber"></div><div class="pub-txt"><div class="pub-cite">MacKinnon, K., Yoon, S., &amp; Andrews, G. (2002). Using “Thinking Tags” to improve understanding in science: A genetics simulation. In the Proceedings of the Computer Supported Collaborative Learning Annual Conference, Boulder, CO.</div><div class="pub-badges"><span class="tag">Proceedings</span></div></div></div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">SCOPE Learning Lab</div>
+      <p class="footer-desc">SCOPE Learning Lab · Socioscientific Complexity & Impact Education</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <p><a href="../index.html">About</a><br><a href="projects.html">Projects</a><br><a href="team.html">Our Team</a><br><a href="publications.html">Publications</a><br><a href="curricular-resources.html">Curricular Resources</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>3700 Walnut Street<br>Philadelphia, PA 19104<br><a href="mailto:yoonsa@upenn.edu">yoonsa@upenn.edu</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">Copyright © 2026 SCOPE Learning Lab</div>
+</footer>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
